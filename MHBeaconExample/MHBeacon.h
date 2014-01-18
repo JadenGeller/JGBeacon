@@ -28,6 +28,8 @@ typedef enum {MHNotRunning, MHAdvertising, MHSearching, MHRunning} MHRunningMode
 @property (nonatomic) BOOL advertising;
 @property (nonatomic) BOOL searching;
 
+@property (nonatomic, copy) void (^didDiscoverPeripheral)(CBPeripheral *peripheral, NSDictionary *advertisementData,NSNumber *RSSI);
+
 +(MHBeacon*)beacon;
 -(id)init;
 

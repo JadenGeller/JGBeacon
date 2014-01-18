@@ -41,8 +41,9 @@
 }
 
 -(void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI{
-    NSLog(@"%@ %@ %@", peripheral, advertisementData, RSSI);
-
+    if (self.didDiscoverPeripheral) {
+        self.didDiscoverPeripheral(peripheral, advertisementData, RSSI);
+    }
 }
 
 -(void)setAdvertisedData:(MHBeaconData *)advertisedData{
