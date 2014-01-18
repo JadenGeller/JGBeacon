@@ -39,9 +39,6 @@
         _readyValue = readyValue;
         if (readyValue == MHRunning) {
             _ready = YES;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                self.onReady(self);
-            });
         }
     }
 }
@@ -113,7 +110,6 @@
 
 -(void)run{
     self.runningMode = MHRunning;
-    NSLog(@"RUN");
 }
 
 -(void)stop{
@@ -124,29 +120,14 @@
     return [[MHBeacon alloc]init];
 }
 
-+(MHBeacon*)beaconWithOnReady:(void (^)(MHBeacon *beacon))onReady{
-    return [[MHBeacon alloc]initWithOnReady:onReady];
-}
-
-+(MHBeacon*)scheduledBeacon{
-    return [MHBeacon beaconWithOnReady:^(MHBeacon *beacon) {
-        [beacon run];
-    }];
-}
-
--(id)initWithOnReady:(void (^)(MHBeacon *beacon))onReady{
+-(id)init{
     if (self = [super init]) {
-        self.onReady = onReady;
         _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
 
         _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
 
     }
     return self;
-}
-
--(id)init{
-    return [self initWithOnReady:nil];
 }
 
 @end
