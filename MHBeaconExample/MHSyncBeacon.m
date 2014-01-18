@@ -24,7 +24,7 @@
 }
 
 -(void)setDataReceived:(void (^)(NSData *))dataReceived{
-    self.sharedReceiveBeacon = dataReceived;
+    self.sharedReceiveBeacon.dataReceived = dataReceived;
 }
 
 -(id)init{

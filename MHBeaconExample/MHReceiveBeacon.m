@@ -30,7 +30,7 @@
 
 -(void)centralManagerDidUpdateState:(CBCentralManager *)central{
     if(central.state==CBCentralManagerStatePoweredOn) {
-        NSLog(@"FUCK");
+        [self scan];
     }
 }
 
