@@ -108,5 +108,4 @@
     return [[MHBeaconData alloc] initWithLocalNameKey:localNameKey serviceUUIDKey:serviceUUIDKey];
 }
 
-
 @end

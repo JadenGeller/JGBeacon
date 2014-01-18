@@ -10,6 +10,8 @@
 
 @interface MHBeacon ()
 
+@property NSUInteger readyValue;
+
 @property (nonatomic, readonly) CBPeripheralManager *peripheralManager;
 @property (nonatomic, readonly) CBCentralManager *centralManager;
 
@@ -17,15 +19,37 @@
 
 @implementation MHBeacon
 
+@synthesize readyValue = _readyValue;
+
 -(void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral{
     if (peripheral.state == CBPeripheralManagerStatePoweredOn) {
-        
+        self.readyValue |= MHAdvertising;
     }
 }
 
 -(void)centralManagerDidUpdateState:(CBCentralManager *)central{
     if(central.state==CBCentralManagerStatePoweredOn) {
+        self.readyValue |= MHSearching;
+    }
+}
 
+-(void)setReadyValue:(NSUInteger)readyValue{
+    @synchronized(self)
+    {
+        _readyValue = readyValue;
+        if (readyValue == MHRunning) {
+            _ready = YES;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.onReady(self);
+            });
+        }
+    }
+}
+
+- (NSUInteger)readyValue
+{
+    @synchronized(self) {
+        return _readyValue;
     }
 }
 
@@ -89,6 +113,7 @@
 
 -(void)run{
     self.runningMode = MHRunning;
+    NSLog(@"RUN");
 }
 
 -(void)stop{
@@ -99,14 +124,29 @@
     return [[MHBeacon alloc]init];
 }
 
--(id)init{
++(MHBeacon*)beaconWithOnReady:(void (^)(MHBeacon *beacon))onReady{
+    return [[MHBeacon alloc]initWithOnReady:onReady];
+}
+
++(MHBeacon*)scheduledBeacon{
+    return [MHBeacon beaconWithOnReady:^(MHBeacon *beacon) {
+        [beacon run];
+    }];
+}
+
+-(id)initWithOnReady:(void (^)(MHBeacon *beacon))onReady{
     if (self = [super init]) {
+        self.onReady = onReady;
         _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
 
         _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
 
     }
     return self;
+}
+
+-(id)init{
+    return [self initWithOnReady:nil];
 }
 
 @end
