@@ -8,10 +8,9 @@
 
 #import "MHBeacon.h"
 
-extern NSString * const MHServiceGreet;
-extern NSString * const MHServiceSync;
-extern NSString * const MHLocalKeyName;
-
 @interface MHSyncBeacon : MHBeacon
+
+@property (nonatomic) NSString *name;
+@property (nonatomic) NSArray *messages;
 
 @end

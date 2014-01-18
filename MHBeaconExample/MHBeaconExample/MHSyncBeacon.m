@@ -8,9 +8,10 @@
 
 #import "MHSyncBeacon.h"
 
-NSString * const MHServiceGreet = @"506FB99E-ECFD-498E-91BC-12CB60840559";
-NSString * const MHServiceSync = @"857824DE-F732-410C-B79B-191308489345";
-NSString * const MHLocalKeyName = @"com.MH.SyncBeacon";
+NSString * const MHService = @"4902FB43-3A20-4835-88FB-5C2A269579DD";
+
+NSString * const MHUserNameKey = @"com.MH.userName";
+NSString * const MHMessageKey = @"com.MH.message";
 
 @implementation MHSyncBeacon
 
@@ -27,8 +28,23 @@ NSString * const MHLocalKeyName = @"com.MH.SyncBeacon";
     //       IF WE ARE SECOND: don't push those marked as already sent
 }
 
+-(NSDictionary*)dataWithMessageText:(NSString*)message{
+    return @{MHUserNameKey: self.name, MHMessageKey : message};
+}
+
+-(void)sendMessage:(NSDictionary*)message toPeripheral:(CBPeripheral*)peripheral{
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:message];
+    [self sendData:data toPeripheral:peripheral];
+}
+
 -(MHSyncBeacon*)syncBeacon{
     MHSyncBeacon *beacon = [[MHSyncBeacon alloc]init];
+    MHBeaconData *data = [MHBeaconData beaconData];
+    data.localNameKey = self.name;
+    data.serviceUUIDsKey = @[MHService];
+    
+    [beacon setAdvertisedData: data];
+    return beacon;
 }
 
 @end

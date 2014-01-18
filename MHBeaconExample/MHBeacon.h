@@ -28,19 +28,17 @@ typedef enum {MHNotRunning, MHAdvertising, MHSearching, MHRunning} MHRunningMode
 @property (nonatomic) BOOL advertising;
 @property (nonatomic) BOOL searching;
 
-@property (nonatomic, copy) void (^didDiscoverPeripheral)(CBPeripheral *peripheral, NSDictionary *advertisementData,NSNumber *RSSI);
-
 +(MHBeacon*)beacon;
 -(id)init;
 
 //TO IMPLEMENT
 // ALSO MAKE US BEACON SERVER
 
-@property (nonatomic) NSSet *peripheralInProximity; //of CBPeripherals
+@property (nonatomic) NSSet *peripheralsInProximity; //of CBPeripherals
 
 -(void)peripheralEnteredProximity:(CBPeripheral*)peripheral;
 -(void)peripheralLeftProximity:(CBPeripheral*)peripheral;
 
--(void)sendData:(NSString*)data toPeripheral:(CBPeripheral*)peripheral; // success callback?
+-(void)sendData:(NSData*)data toPeripheral:(CBPeripheral*)peripheral; // success callback?
 
 @end

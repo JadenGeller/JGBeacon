@@ -7,7 +7,7 @@
 //
 
 #import "MHViewController.h"
-#import "MHBeacon.h"
+#import "MHSyncBeacon.h"
 #import "MHBeaconData.h"
 
 @interface MHViewController ()
@@ -25,10 +25,11 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     beacon = [MHBeacon beacon];
-    [beacon setAdvertisedData: [MHBeaconData beaconDataWithLocalNameKey:@"Test" serviceUUIDKey:MHServiceDiscover]];
-    beacon.didDiscoverPeripheral = ^void(CBPeripheral *peripheral, NSDictionary *advertisementData,NSNumber *RSSI){
-        NSLog(@"%@",RSSI);
-    };
+    MHBeaconData *data = [MHBeaconData beaconData];
+    
+    data.localNameKey = @"Hi";
+    data.serviceUUIDsKey = @[@"4902FB43-3A20-4835-88FB-5C2A269579DD"];
+    beacon.advertisedData = data;
     
     [beacon run];
     

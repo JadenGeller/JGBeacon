@@ -21,9 +21,6 @@
 
 @property (readonly) NSDictionary *dictionaryValue;
 
--(void)setServiceUUIDKey:(NSString*)serviceUUIDKey; // use uuidgen
-
--(id)initWithLocalNameKey:(NSString*)localNameKey serviceUUIDKey:(NSString*)serviceUUIDKey;
-+(MHBeaconData*)beaconDataWithLocalNameKey:(NSString*)localNameKey serviceUUIDKey:(NSString*)serviceUUIDKey;
++(MHBeaconData*)beaconData;
 
 @end

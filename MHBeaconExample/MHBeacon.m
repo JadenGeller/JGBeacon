@@ -23,6 +23,7 @@
 @implementation MHBeacon
 
 -(void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral{
+    NSLog(@"MEH2");
     if (peripheral.state == CBPeripheralManagerStatePoweredOn) {
         if (self.queuedAdvertisingValue) { // Tried to set advertising value earlier but couldn't; set now
             self.advertising = self.queuedAdvertisingValue.boolValue;
@@ -32,6 +33,7 @@
 }
 
 -(void)centralManagerDidUpdateState:(CBCentralManager *)central{
+    NSLog(@"MEH");
     if(central.state==CBCentralManagerStatePoweredOn) {
         if (self.queuedSearchingValue) { // Tried to set searching value earlier but couldn't; set now
             self.searching = self.queuedSearchingValue.boolValue;
@@ -40,11 +42,40 @@
     }
 }
 
--(void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI{
-    if (self.didDiscoverPeripheral) {
-        self.didDiscoverPeripheral(peripheral, advertisementData, RSSI);
+-(void)sendData:(NSData*)data{
+    NSArray *peripherals = [self.centralManager retrieveConnectedPeripheralsWithServices:self.advertisedData.serviceUUIDsKey];
+    for (CBPeripheral *peripheral in peripherals) {
+        [self sendData:data toPeripheral:peripheral];
     }
 }
+
+-(void)sendData:(NSData *)data toPeripheral:(CBPeripheral *)peripheral{
+    
+    for(CBService *service in peripheral.services)
+    {
+        if([service.UUID isEqual:self.advertisedData.serviceUUIDsKey])
+        {
+            for(CBCharacteristic *characteristic in service.characteristics)
+            {
+                NSLog(@"%@",characteristic);
+            }
+        }
+    }
+    //    [peripheral writeValue:data forCharacteristic: type:<#(CBCharacteristicWriteType)#>]
+}
+
+-(void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI{
+    NSLog(@"MEH4");
+    [self sendData:nil];
+}
+//
+//- (void)peripheralManager:(CBPeripheralManager *)peripheral didReceiveReadRequest:(CBATTRequest *)request{
+//    [peripheral respondToRequest:request withResult:<#(CBATTError)#>];
+//}
+//
+//- (void)peripheralManager:(CBPeripheralManager *)peripheral didReceiveWriteRequests:(NSArray *)requests{
+//    
+//}
 
 -(void)setAdvertisedData:(MHBeaconData *)advertisedData{
     if (advertisedData != _advertisedData) {
