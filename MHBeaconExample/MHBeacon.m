@@ -71,7 +71,7 @@
                 _advertising = YES;
             }
             else{
-                self.queuedAdvertisingValue = @YES; // Start advertising later
+                self.queuedAdvertisingValue = @YES; // Start advertising later; not ready yet
             }
         }
     }
@@ -91,7 +91,7 @@
                 _searching = YES;
             }
             else{
-                self.queuedSearchingValue = @YES; // Start searching later
+                self.queuedSearchingValue = @YES; // Start searching later; not ready yet
             }
         }
     }
@@ -99,7 +99,7 @@
 
 -(void)setRunningMode:(MHRunningMode)running{
     self.advertising = (running == MHRunning) || (running == MHAdvertising);
-    self.searching = (running == MHSearching) || (running == MHAdvertising);
+    self.searching = (running == MHRunning) || (running == MHSearching);
 }
 
 +(MHBeacon*)beacon{
