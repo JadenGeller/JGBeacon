@@ -8,12 +8,10 @@
 
 #import "MHViewController.h"
 #import "MHSyncBeacon.h"
-#import "MHBeaconData.h"
 
 @interface MHViewController ()
-{
-    MHBeacon *beacon;
-}
+
+@property (nonatomic) MHSyncBeacon *beacon;
 
 @end
 
@@ -24,16 +22,12 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    beacon = [MHBeacon beacon];
-    MHBeaconData *data = [MHBeaconData beaconData];
-    
-    data.localNameKey = @"Hi";
-    data.serviceUUIDsKey = @[[CBUUID UUIDWithString:@"4902FB43-3A20-4835-88FB-5C2A269579DD"]];
-    
-    beacon.advertisedData = data;
-    
-    [beacon run];
-    
+    self.beacon = [MHSyncBeacon beacon];
+    self.beacon.dataReceived = ^void (NSData *data){
+        NSLog(@"%@", [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
+    };
+    [self.beacon sendData:[@"hey" dataUsingEncoding:NSUTF8StringEncoding]];
+        
 }
 
 - (void)didReceiveMemoryWarning

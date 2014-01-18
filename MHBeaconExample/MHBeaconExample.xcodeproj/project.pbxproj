@@ -21,10 +21,10 @@
 		D7A3AA7C188A4DFB009F67FD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A3AA5E188A4DFB009F67FD /* UIKit.framework */; };
 		D7A3AA84188A4DFB009F67FD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D7A3AA82188A4DFB009F67FD /* InfoPlist.strings */; };
 		D7A3AA86188A4DFB009F67FD /* MHBeaconExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A3AA85188A4DFB009F67FD /* MHBeaconExampleTests.m */; };
-		D7A3AA92188A50A4009F67FD /* MHBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A3AA91188A50A4009F67FD /* MHBeacon.m */; };
 		D7A3AA94188A5130009F67FD /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A3AA93188A5130009F67FD /* CoreBluetooth.framework */; };
-		D7A3AA97188A54EB009F67FD /* MHBeaconData.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A3AA96188A54EB009F67FD /* MHBeaconData.m */; };
-		D7F12D69188AE9C100FE28AC /* MHSyncBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F12D68188AE9C100FE28AC /* MHSyncBeacon.m */; };
+		D7F12D6E188B218200FE28AC /* MHSendBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F12D6D188B218200FE28AC /* MHSendBeacon.m */; };
+		D7F12D71188B219300FE28AC /* MHReceiveBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F12D70188B219300FE28AC /* MHReceiveBeacon.m */; };
+		D7F12D74188B21A200FE28AC /* MHSyncBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F12D73188B21A200FE28AC /* MHSyncBeacon.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,8 +62,15 @@
 		D7A3AA93188A5130009F67FD /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		D7A3AA95188A54EB009F67FD /* MHBeaconData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHBeaconData.h; sourceTree = "<group>"; };
 		D7A3AA96188A54EB009F67FD /* MHBeaconData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHBeaconData.m; sourceTree = "<group>"; };
-		D7F12D67188AE9C100FE28AC /* MHSyncBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHSyncBeacon.h; path = MHBeaconExample/MHSyncBeacon.h; sourceTree = "<group>"; };
-		D7F12D68188AE9C100FE28AC /* MHSyncBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHSyncBeacon.m; path = MHBeaconExample/MHSyncBeacon.m; sourceTree = "<group>"; };
+		D7F12D67188AE9C100FE28AC /* MHSyncBeacona.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHSyncBeacona.h; path = MHBeaconExample/MHSyncBeacona.h; sourceTree = "<group>"; };
+		D7F12D68188AE9C100FE28AC /* MHSyncBeacona.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHSyncBeacona.m; path = MHBeaconExample/MHSyncBeacona.m; sourceTree = "<group>"; };
+		D7F12D6C188B218200FE28AC /* MHSendBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHSendBeacon.h; sourceTree = "<group>"; };
+		D7F12D6D188B218200FE28AC /* MHSendBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHSendBeacon.m; sourceTree = "<group>"; };
+		D7F12D6F188B219300FE28AC /* MHReceiveBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHReceiveBeacon.h; sourceTree = "<group>"; };
+		D7F12D70188B219300FE28AC /* MHReceiveBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHReceiveBeacon.m; sourceTree = "<group>"; };
+		D7F12D72188B21A200FE28AC /* MHSyncBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHSyncBeacon.h; sourceTree = "<group>"; };
+		D7F12D73188B21A200FE28AC /* MHSyncBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHSyncBeacon.m; sourceTree = "<group>"; };
+		D7F12D75188B28CE00FE28AC /* TransferService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferService.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,8 +180,15 @@
 				D7A3AA91188A50A4009F67FD /* MHBeacon.m */,
 				D7A3AA95188A54EB009F67FD /* MHBeaconData.h */,
 				D7A3AA96188A54EB009F67FD /* MHBeaconData.m */,
-				D7F12D67188AE9C100FE28AC /* MHSyncBeacon.h */,
-				D7F12D68188AE9C100FE28AC /* MHSyncBeacon.m */,
+				D7F12D67188AE9C100FE28AC /* MHSyncBeacona.h */,
+				D7F12D68188AE9C100FE28AC /* MHSyncBeacona.m */,
+				D7F12D72188B21A200FE28AC /* MHSyncBeacon.h */,
+				D7F12D73188B21A200FE28AC /* MHSyncBeacon.m */,
+				D7F12D6C188B218200FE28AC /* MHSendBeacon.h */,
+				D7F12D6D188B218200FE28AC /* MHSendBeacon.m */,
+				D7F12D6F188B219300FE28AC /* MHReceiveBeacon.h */,
+				D7F12D70188B219300FE28AC /* MHReceiveBeacon.m */,
+				D7F12D75188B28CE00FE28AC /* TransferService.h */,
 			);
 			name = MHBeacon;
 			sourceTree = "<group>";
@@ -283,11 +297,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7A3AA97188A54EB009F67FD /* MHBeaconData.m in Sources */,
 				D7A3AA67188A4DFB009F67FD /* main.m in Sources */,
+				D7F12D74188B21A200FE28AC /* MHSyncBeacon.m in Sources */,
+				D7F12D6E188B218200FE28AC /* MHSendBeacon.m in Sources */,
+				D7F12D71188B219300FE28AC /* MHReceiveBeacon.m in Sources */,
 				D7A3AA71188A4DFB009F67FD /* MHViewController.m in Sources */,
-				D7F12D69188AE9C100FE28AC /* MHSyncBeacon.m in Sources */,
-				D7A3AA92188A50A4009F67FD /* MHBeacon.m in Sources */,
 				D7A3AA6B188A4DFB009F67FD /* MHAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

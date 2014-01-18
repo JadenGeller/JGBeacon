@@ -6,9 +6,9 @@
 //
 //
 
-#import "MHBeacon.h"
+#import <CoreBluetooth/CoreBluetooth.h>
 
-@interface MHSyncBeacon : MHBeacon
+@interface MHSyncBeacon : NSObject <CBPeripheralManagerDelegate, CBCentralManagerDelegate>
 
 @property (nonatomic) NSString *name;
 @property (nonatomic) NSArray *messages;
