@@ -92,7 +92,7 @@
     return data.copy;
 }
 
--(void)setServiceUUIDsKey:(NSString*)serviceUUIDKey{
+-(void)setServiceUUIDKey:(NSString*)serviceUUIDKey{
     self.serviceUUIDsKey = @[[CBUUID UUIDWithString:serviceUUIDKey]];
 }
 
@@ -104,7 +104,7 @@
     return self;
 }
 
--(MHBeaconData*)beaconDataWithLocalNameKey:(NSString*)localNameKey serviceUUIDKey:(NSString*)serviceUUIDKey{
++(MHBeaconData*)beaconDataWithLocalNameKey:(NSString*)localNameKey serviceUUIDKey:(NSString*)serviceUUIDKey{
     return [[MHBeaconData alloc] initWithLocalNameKey:localNameKey serviceUUIDKey:serviceUUIDKey];
 }
 

@@ -10,12 +10,22 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "MHBeaconData.h"
 
+typedef enum {MHNotRunning, MHAdvertising, MHSearching, MHRunning} MHRunningMode;
+
 @interface MHBeacon : NSObject <CBPeripheralManagerDelegate, CBCentralManagerDelegate>
 
 @property (nonatomic) MHBeaconData *advertisedData;
-@property (nonatomic) NSString *serviceIdentifier;
+
+/*
+ * Getter: Returns (advertising || searching)
+ * Setter: Sets advertising and searching
+ */
+@property (nonatomic) MHRunningMode running;
 
 @property (nonatomic) BOOL advertising;
 @property (nonatomic) BOOL searching;
+
++(MHBeacon*)beacon;
+-(id)init;
 
 @end

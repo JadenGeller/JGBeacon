@@ -10,72 +10,110 @@
 
 @interface MHBeacon ()
 
-@property (nonatomic) CBPeripheralManager *peripheralManager;
-@property (nonatomic) CBCentralManager *centralManager;
+@property (nonatomic) NSNumber *queuedAdvertisingValue;
+@property (nonatomic) NSNumber *queuedSearchingValue;
+
+@property (nonatomic, readonly) CBPeripheralManager *peripheralManager;
+@property (nonatomic, readonly) CBCentralManager *centralManager;
 
 @end
 
 @implementation MHBeacon
 
-@synthesize peripheralManager = _peripheralManager;
-
--(CBPeripheralManager*)peripheralManager{
-    if (!_peripheralManager) {
-        _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
-    }
-    return _peripheralManager;
-}
-
--(CBCentralManager*)centralManager{
-    if (!_centralManager) {
-        _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
-    }
-    return _centralManager;
-}
-
 -(void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral{
-    
+    if (peripheral.state == CBPeripheralManagerStatePoweredOn) {
+        if (self.queuedAdvertisingValue) {
+            [self setAdvertising:self.queuedAdvertisingValue.boolValue];
+            self.queuedAdvertisingValue = nil;
+        }
+    }
+}
+
+-(void)centralManagerDidUpdateState:(CBCentralManager *)central{
+    if(central.state==CBCentralManagerStatePoweredOn) {
+        if (self.queuedSearchingValue) {
+            [self setSearching:self.queuedSearchingValue.boolValue];
+            self.queuedSearchingValue = nil;
+        }
+    }
+}
+
+-(void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI{
+    NSLog(@"RSSI: %d", [RSSI intValue]);
+
 }
 
 -(void)setAdvertisedData:(MHBeaconData *)advertisedData{
-    if (self.advertising) { // Stop advertising during change
-        self.advertising = NO;
-        _advertisedData = advertisedData;
-        self.advertising = YES;
-    }
-    else{
-        _advertisedData = advertisedData;
+    if (advertisedData != _advertisedData) {
+        if (self.running) {
+            MHRunningMode pastRunningMode = self.running;
+            self.running = MHNotRunning;
+            
+            _advertisedData = advertisedData;
+            
+            self.running = pastRunningMode;
+        }
+        else{
+            _advertisedData = advertisedData;
+        }
     }
 }
 
 -(void)setAdvertising:(BOOL)advertising{
-    if (!advertising) {
-        [self.peripheralManager stopAdvertising];
-        _advertising = NO;
-    }
-    else if (self.advertisedData) {
-        [self.peripheralManager startAdvertising:self.advertisedData.dictionaryValue];
-        _advertising = YES;
+    if (advertising != _advertising) {
+        if (!advertising) {
+            [self.peripheralManager stopAdvertising];
+            _advertising = NO;
+        }
+        else if (self.advertisedData) {
+            if (self.peripheralManager.state == CBPeripheralManagerStatePoweredOn) {
+                [self.peripheralManager startAdvertising:self.advertisedData.dictionaryValue];
+                _advertising = YES;
+            }
+            else{
+                self.queuedAdvertisingValue = @YES;
+            }
+        }
     }
 }
 
 -(void)setSearching:(BOOL)searching{
-    if (!searching) {
-        [_centralManager stopScan];
-        _searching = NO;
+    if (searching != _searching) {
+        if (!searching) {
+            [_centralManager stopScan];
+            _searching = NO;
+        }
+        else if (self.advertisedData){
+            if (self.centralManager.state == CBCentralManagerStatePoweredOn) {
+                NSDictionary *scanOptions = @{CBCentralManagerScanOptionAllowDuplicatesKey:@(YES)};
+                
+                [_centralManager scanForPeripheralsWithServices:self.advertisedData.serviceUUIDsKey options:scanOptions];
+                _searching = YES;
+            }
+            else{
+                self.queuedSearchingValue = @YES;
+            }
+        }
     }
-    else if (self.advertisedData){
-        NSArray *services = @[[CBUUID UUIDWithString:self.serviceIdentifier]];
-        NSDictionary *scanOptions = @{CBCentralManagerScanOptionAllowDuplicatesKey:@(YES)}; // WUT
-
-        [_centralManager scanForPeripheralsWithServices:services options:scanOptions];
-        _searching = YES;
-    }
-    
 }
 
--(void)setServiceIdentifier:(NSString *)serviceIdentifier{
-    
+-(void)setRunning:(MHRunningMode)running{
+    self.advertising = (running == MHRunning) || (running == MHAdvertising);
+    self.searching = (running == MHSearching) || (running == MHAdvertising);
+}
+
++(MHBeacon*)beacon{
+    return [[MHBeacon alloc]init];
+}
+
+-(id)init{
+    if (self = [super init]) {
+        _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
+
+        _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
+
+    }
+    return self;
 }
 
 @end
