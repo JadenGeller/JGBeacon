@@ -28,8 +28,6 @@ typedef enum {MHNotRunning, MHAdvertising, MHSearching, MHRunning} MHRunningMode
 @property (nonatomic) BOOL advertising;
 @property (nonatomic) BOOL searching;
 
-@property (nonatomic, readonly) BOOL ready;
-
 +(MHBeacon*)beacon;
 -(id)init;
 

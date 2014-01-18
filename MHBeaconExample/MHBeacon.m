@@ -10,7 +10,10 @@
 
 @interface MHBeacon ()
 
-@property NSUInteger readyValue;
+@property (nonatomic) NSUInteger readyValue;
+
+@property (nonatomic) NSNumber *queuedAdvertisingValue;
+@property (nonatomic) NSNumber *queuedSearchingValue;
 
 @property (nonatomic, readonly) CBPeripheralManager *peripheralManager;
 @property (nonatomic, readonly) CBCentralManager *centralManager;
@@ -19,39 +22,26 @@
 
 @implementation MHBeacon
 
-@synthesize readyValue = _readyValue;
-
 -(void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral{
     if (peripheral.state == CBPeripheralManagerStatePoweredOn) {
-        self.readyValue |= MHAdvertising;
+        if (self.queuedAdvertisingValue) { // Tried to set advertising value earlier but couldn't; set now
+            self.advertising = self.queuedAdvertisingValue.boolValue;
+            self.queuedAdvertisingValue = nil;
+        }
     }
 }
 
 -(void)centralManagerDidUpdateState:(CBCentralManager *)central{
     if(central.state==CBCentralManagerStatePoweredOn) {
-        self.readyValue |= MHSearching;
-    }
-}
-
--(void)setReadyValue:(NSUInteger)readyValue{
-    @synchronized(self)
-    {
-        _readyValue = readyValue;
-        if (readyValue == MHRunning) {
-            _ready = YES;
+        if (self.queuedSearchingValue) { // Tried to set searching value earlier but couldn't; set now
+            self.searching = self.queuedSearchingValue.boolValue;
+            self.queuedSearchingValue = nil;
         }
     }
 }
 
-- (NSUInteger)readyValue
-{
-    @synchronized(self) {
-        return _readyValue;
-    }
-}
-
 -(void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI{
-    NSLog(@"RSSI: %d", [RSSI intValue]);
+    NSLog(@"%@ %@ %@", peripheral, advertisementData, RSSI);
 
 }
 
@@ -82,6 +72,9 @@
                 [self.peripheralManager startAdvertising:self.advertisedData.dictionaryValue];
                 _advertising = YES;
             }
+            else{
+                self.queuedAdvertisingValue = @YES; // Start advertising later; not ready yet
+            }
         }
     }
 }
@@ -98,6 +91,9 @@
                 
                 [_centralManager scanForPeripheralsWithServices:self.advertisedData.serviceUUIDsKey options:scanOptions];
                 _searching = YES;
+            }
+            else{
+                self.queuedSearchingValue = @YES; // Start advertising later; not ready yet
             }
         }
     }
@@ -122,9 +118,10 @@
 
 -(id)init{
     if (self = [super init]) {
+        _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
+
         _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
 
-        _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
 
     }
     return self;
