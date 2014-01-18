@@ -24,6 +24,7 @@
 		D7A3AA92188A50A4009F67FD /* MHBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A3AA91188A50A4009F67FD /* MHBeacon.m */; };
 		D7A3AA94188A5130009F67FD /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A3AA93188A5130009F67FD /* CoreBluetooth.framework */; };
 		D7A3AA97188A54EB009F67FD /* MHBeaconData.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A3AA96188A54EB009F67FD /* MHBeaconData.m */; };
+		D7F12D69188AE9C100FE28AC /* MHSyncBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F12D68188AE9C100FE28AC /* MHSyncBeacon.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,8 @@
 		D7A3AA93188A5130009F67FD /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		D7A3AA95188A54EB009F67FD /* MHBeaconData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHBeaconData.h; sourceTree = "<group>"; };
 		D7A3AA96188A54EB009F67FD /* MHBeaconData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHBeaconData.m; sourceTree = "<group>"; };
+		D7F12D67188AE9C100FE28AC /* MHSyncBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHSyncBeacon.h; path = MHBeaconExample/MHSyncBeacon.h; sourceTree = "<group>"; };
+		D7F12D68188AE9C100FE28AC /* MHSyncBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHSyncBeacon.m; path = MHBeaconExample/MHSyncBeacon.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +173,8 @@
 				D7A3AA91188A50A4009F67FD /* MHBeacon.m */,
 				D7A3AA95188A54EB009F67FD /* MHBeaconData.h */,
 				D7A3AA96188A54EB009F67FD /* MHBeaconData.m */,
+				D7F12D67188AE9C100FE28AC /* MHSyncBeacon.h */,
+				D7F12D68188AE9C100FE28AC /* MHSyncBeacon.m */,
 			);
 			name = MHBeacon;
 			sourceTree = "<group>";
@@ -281,6 +286,7 @@
 				D7A3AA97188A54EB009F67FD /* MHBeaconData.m in Sources */,
 				D7A3AA67188A4DFB009F67FD /* main.m in Sources */,
 				D7A3AA71188A4DFB009F67FD /* MHViewController.m in Sources */,
+				D7F12D69188AE9C100FE28AC /* MHSyncBeacon.m in Sources */,
 				D7A3AA92188A50A4009F67FD /* MHBeacon.m in Sources */,
 				D7A3AA6B188A4DFB009F67FD /* MHAppDelegate.m in Sources */,
 			);
