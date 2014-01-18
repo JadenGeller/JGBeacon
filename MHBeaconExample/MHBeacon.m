@@ -22,8 +22,8 @@
 
 -(void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral{
     if (peripheral.state == CBPeripheralManagerStatePoweredOn) {
-        if (self.queuedAdvertisingValue) {
-            [self setAdvertising:self.queuedAdvertisingValue.boolValue];
+        if (self.queuedAdvertisingValue) { // Tried to set advertising value earlier but couldn't; set now
+            self.advertising = self.queuedAdvertisingValue.boolValue;
             self.queuedAdvertisingValue = nil;
         }
     }
@@ -31,8 +31,8 @@
 
 -(void)centralManagerDidUpdateState:(CBCentralManager *)central{
     if(central.state==CBCentralManagerStatePoweredOn) {
-        if (self.queuedSearchingValue) {
-            [self setSearching:self.queuedSearchingValue.boolValue];
+        if (self.queuedSearchingValue) { // Tried to set searching value earlier but couldn't; set now
+            self.searching = self.queuedSearchingValue.boolValue;
             self.queuedSearchingValue = nil;
         }
     }
@@ -45,13 +45,13 @@
 
 -(void)setAdvertisedData:(MHBeaconData *)advertisedData{
     if (advertisedData != _advertisedData) {
-        if (self.running) {
-            MHRunningMode pastRunningMode = self.running;
-            self.running = MHNotRunning;
+        if (self.runningMode) {
+            MHRunningMode pastRunningMode = self.runningMode;
+            self.runningMode = MHNotRunning;
             
             _advertisedData = advertisedData;
             
-            self.running = pastRunningMode;
+            self.runningMode = pastRunningMode;
         }
         else{
             _advertisedData = advertisedData;
@@ -71,7 +71,7 @@
                 _advertising = YES;
             }
             else{
-                self.queuedAdvertisingValue = @YES;
+                self.queuedAdvertisingValue = @YES; // Start advertising later
             }
         }
     }
@@ -91,13 +91,13 @@
                 _searching = YES;
             }
             else{
-                self.queuedSearchingValue = @YES;
+                self.queuedSearchingValue = @YES; // Start searching later
             }
         }
     }
 }
 
--(void)setRunning:(MHRunningMode)running{
+-(void)setRunningMode:(MHRunningMode)running{
     self.advertising = (running == MHRunning) || (running == MHAdvertising);
     self.searching = (running == MHSearching) || (running == MHAdvertising);
 }

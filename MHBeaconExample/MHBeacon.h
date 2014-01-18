@@ -20,7 +20,7 @@ typedef enum {MHNotRunning, MHAdvertising, MHSearching, MHRunning} MHRunningMode
  * Getter: Returns (advertising || searching)
  * Setter: Sets advertising and searching
  */
-@property (nonatomic) MHRunningMode running;
+@property (nonatomic) MHRunningMode runningMode;
 
 @property (nonatomic) BOOL advertising;
 @property (nonatomic) BOOL searching;

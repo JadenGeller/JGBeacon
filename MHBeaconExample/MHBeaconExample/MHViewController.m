@@ -23,7 +23,7 @@
     
     MHBeacon *beacon = [MHBeacon beacon];
     [beacon setAdvertisedData:[MHBeaconData beaconDataWithLocalNameKey:@"Test" serviceUUIDKey:@"2F082B0F-4B5C-48C9-81A2-FF6EAA1FB521"]];
-    beacon.running = YES;
+    beacon.runningMode = MHRunning;
 }
 
 - (void)didReceiveMemoryWarning
