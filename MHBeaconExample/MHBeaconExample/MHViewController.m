@@ -28,7 +28,8 @@
     MHBeaconData *data = [MHBeaconData beaconData];
     
     data.localNameKey = @"Hi";
-    data.serviceUUIDsKey = @[@"4902FB43-3A20-4835-88FB-5C2A269579DD"];
+    data.serviceUUIDsKey = @[[CBUUID UUIDWithString:@"4902FB43-3A20-4835-88FB-5C2A269579DD"]];
+    
     beacon.advertisedData = data;
     
     [beacon run];

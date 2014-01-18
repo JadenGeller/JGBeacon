@@ -23,7 +23,6 @@
 @implementation MHBeacon
 
 -(void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral{
-    NSLog(@"MEH2");
     if (peripheral.state == CBPeripheralManagerStatePoweredOn) {
         if (self.queuedAdvertisingValue) { // Tried to set advertising value earlier but couldn't; set now
             self.advertising = self.queuedAdvertisingValue.boolValue;
@@ -33,7 +32,6 @@
 }
 
 -(void)centralManagerDidUpdateState:(CBCentralManager *)central{
-    NSLog(@"MEH");
     if(central.state==CBCentralManagerStatePoweredOn) {
         if (self.queuedSearchingValue) { // Tried to set searching value earlier but couldn't; set now
             self.searching = self.queuedSearchingValue.boolValue;
@@ -53,6 +51,7 @@
     
     for(CBService *service in peripheral.services)
     {
+        NSLog(@"service %@",service);
         if([service.UUID isEqual:self.advertisedData.serviceUUIDsKey])
         {
             for(CBCharacteristic *characteristic in service.characteristics)
@@ -65,8 +64,7 @@
 }
 
 -(void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI{
-    NSLog(@"MEH4");
-    [self sendData:nil];
+    [self sendData:nil toPeripheral:peripheral];
 }
 //
 //- (void)peripheralManager:(CBPeripheralManager *)peripheral didReceiveReadRequest:(CBATTRequest *)request{
@@ -101,7 +99,24 @@
         }
         else if (self.advertisedData) {
             if (self.peripheralManager.state == CBPeripheralManagerStatePoweredOn) {
+                
+                
+                CBMutableCharacteristic *characteristic = [[CBMutableCharacteristic alloc]
+                                             initWithType:[CBUUID UUIDWithString:@"8873C974-05FE-4DD3-A247-57E48F389875"]
+                                             properties:CBCharacteristicPropertyNotify
+                                             value:nil
+                                             permissions:0];
+                
+                CBMutableService *service = [[CBMutableService alloc]
+                                      initWithType:[CBUUID UUIDWithString:@"B29B7398-AB6B-41F9-95D7-AFD02DAD418E"]
+                                      primary:YES];
+                service.characteristics = @[characteristic];
+                
+                [self.peripheralManager addService:service];
+
+                
                 [self.peripheralManager startAdvertising:self.advertisedData.dictionaryValue];
+                NSLog(@"%@", self.peripheralManager);
                 _advertising = YES;
             }
             else{
@@ -122,6 +137,7 @@
                 NSDictionary *scanOptions = @{CBCentralManagerScanOptionAllowDuplicatesKey:@(NO)};
                 
                 [_centralManager scanForPeripheralsWithServices:self.advertisedData.serviceUUIDsKey options:scanOptions];
+                
                 _searching = YES;
             }
             else{
