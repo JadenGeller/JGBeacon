@@ -10,9 +10,6 @@
 
 @interface MHBeacon ()
 
-@property (nonatomic) NSNumber *queuedAdvertisingValue;
-@property (nonatomic) NSNumber *queuedSearchingValue;
-
 @property (nonatomic, readonly) CBPeripheralManager *peripheralManager;
 @property (nonatomic, readonly) CBCentralManager *centralManager;
 
@@ -22,19 +19,13 @@
 
 -(void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral{
     if (peripheral.state == CBPeripheralManagerStatePoweredOn) {
-        if (self.queuedAdvertisingValue) { // Tried to set advertising value earlier but couldn't; set now
-            self.advertising = self.queuedAdvertisingValue.boolValue;
-            self.queuedAdvertisingValue = nil;
-        }
+        
     }
 }
 
 -(void)centralManagerDidUpdateState:(CBCentralManager *)central{
     if(central.state==CBCentralManagerStatePoweredOn) {
-        if (self.queuedSearchingValue) { // Tried to set searching value earlier but couldn't; set now
-            self.searching = self.queuedSearchingValue.boolValue;
-            self.queuedSearchingValue = nil;
-        }
+
     }
 }
 
@@ -70,9 +61,6 @@
                 [self.peripheralManager startAdvertising:self.advertisedData.dictionaryValue];
                 _advertising = YES;
             }
-            else{
-                self.queuedAdvertisingValue = @YES; // Start advertising later; not ready yet
-            }
         }
     }
 }
@@ -90,9 +78,6 @@
                 [_centralManager scanForPeripheralsWithServices:self.advertisedData.serviceUUIDsKey options:scanOptions];
                 _searching = YES;
             }
-            else{
-                self.queuedSearchingValue = @YES; // Start searching later; not ready yet
-            }
         }
     }
 }
@@ -100,6 +85,14 @@
 -(void)setRunningMode:(MHRunningMode)running{
     self.advertising = (running == MHRunning) || (running == MHAdvertising);
     self.searching = (running == MHRunning) || (running == MHSearching);
+}
+
+-(void)run{
+    self.runningMode = MHRunning;
+}
+
+-(void)stop{
+    self.runningMode = MHNotRunning;
 }
 
 +(MHBeacon*)beacon{
