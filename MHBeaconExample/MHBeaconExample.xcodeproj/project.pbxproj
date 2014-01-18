@@ -221,6 +221,13 @@
 				CLASSPREFIX = MH;
 				LastUpgradeCheck = 0500;
 				TargetAttributes = {
+					D7A3AA56188A4DFB009F67FD = {
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
 					D7A3AA77188A4DFB009F67FD = {
 						TestTargetID = D7A3AA56188A4DFB009F67FD;
 					};
@@ -484,6 +491,7 @@
 				D7A3AA8B188A4DFB009F67FD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D7A3AA8C188A4DFB009F67FD /* Build configuration list for PBXNativeTarget "MHBeaconExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +500,7 @@
 				D7A3AA8E188A4DFB009F67FD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

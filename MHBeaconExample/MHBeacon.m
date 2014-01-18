@@ -88,7 +88,7 @@
         }
         else if (self.advertisedData){
             if (self.centralManager.state == CBCentralManagerStatePoweredOn) {
-                NSDictionary *scanOptions = @{CBCentralManagerScanOptionAllowDuplicatesKey:@(YES)};
+                NSDictionary *scanOptions = @{CBCentralManagerScanOptionAllowDuplicatesKey:@(NO)};
                 
                 [_centralManager scanForPeripheralsWithServices:self.advertisedData.serviceUUIDsKey options:scanOptions];
                 _searching = YES;
