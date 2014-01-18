@@ -13,12 +13,12 @@
 @property (nonatomic) NSString *localNameKey;
 @property (nonatomic) NSData *manufacturerDataKey;
 @property (nonatomic) NSDictionary *serviceDataKey;
-@property (nonatomic) NSArray *dataServiceUUIDsKey;
-@property (nonatomic) NSArray *dataOverflowServiceUUIDsKey;
-@property (nonatomic) NSNumber *dataTxPowerLevelKey;
-@property (nonatomic) NSNumber *dataIsConnectable;
-@property (nonatomic) NSArray *dataSolicitedServiceUUIDsKey;
+@property (nonatomic) NSArray *serviceUUIDsKey;
+@property (nonatomic) NSArray *overflowServiceUUIDsKey;
+@property (nonatomic) NSNumber *txPowerLevelKey;
+@property (nonatomic) NSNumber *isConnectable;
+@property (nonatomic) NSArray *solicitedServiceUUIDsKey;
 
-@property (nonatomic, readonly) NSDictionary *dictionaryValue;
+@property (readonly) NSDictionary *dictionaryValue;
 
 @end

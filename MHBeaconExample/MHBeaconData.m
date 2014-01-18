@@ -9,40 +9,87 @@
 #import "MHBeaconData.h"
 #import <CoreBluetooth/CoreBluetooth.h>
 
+@interface MHBeaconData ()
+
+{
+    NSMutableDictionary *data;
+}
+
+@end
+
 @implementation MHBeaconData
 
+-(void)setLocalNameKey:(NSString *)localNameKey{
+    [self updateObject:localNameKey forKey:CBAdvertisementDataLocalNameKey];
+}
+
+-(void)setManufacturerDataKey:(NSData *)manufacturerDataKey{
+    [self updateObject:manufacturerDataKey forKey:CBAdvertisementDataManufacturerDataKey];
+}
+
+-(void)setServiceDataKey:(NSDictionary *)serviceDataKey{
+    [self updateObject:serviceDataKey forKey:CBAdvertisementDataServiceDataKey];
+}
+
+-(void)setDataServiceUUIDsKey:(NSArray *)serviceUUIDsKey{
+    [self updateObject:serviceUUIDsKey forKey:CBAdvertisementDataServiceUUIDsKey];
+}
+
+-(void)setDataOverflowServiceUUIDsKey:(NSArray *)overflowServiceUUIDsKey{
+    [self updateObject:overflowServiceUUIDsKey forKey:CBAdvertisementDataOverflowServiceUUIDsKey];
+}
+
+-(void)setDataTxPowerLevelKey:(NSNumber *)txPowerLevelKey{
+    [self updateObject:txPowerLevelKey forKey:CBAdvertisementDataTxPowerLevelKey];
+}
+
+-(void)setDataIsConnectable:(NSNumber *)isConnectable{
+    [self updateObject:isConnectable forKey:CBAdvertisementDataIsConnectable];
+}
+
+-(void)setDataSolicitedServiceUUIDsKey:(NSArray *)solicitedServiceUUIDsKey{
+    [self updateObject:solicitedServiceUUIDsKey forKey:CBAdvertisementDataSolicitedServiceUUIDsKey];
+}
+
+-(void)updateObject:(id)anObject forKey:(id<NSCopying>)aKey{
+    if (anObject) [data setObject:anObject forKey:aKey];
+    else [data removeObjectForKey:aKey];
+}
+
+-(NSString*)localNameKey{
+    return data[CBAdvertisementDataLocalNameKey];
+}
+
+-(NSData*)manufacturerDataKey{
+    return data[CBAdvertisementDataManufacturerDataKey];
+}
+
+-(NSDictionary*)serviceDataKey{
+    return data[CBAdvertisementDataServiceDataKey];
+}
+
+-(NSArray*)serviceUUIDsKey{
+    return data[CBAdvertisementDataServiceUUIDsKey];
+}
+
+-(NSArray*)overflowServiceUUIDsKey{
+    return data[CBAdvertisementDataOverflowServiceUUIDsKey];
+}
+
+-(NSNumber*)txPowerLevelKey{
+    return data[CBAdvertisementDataTxPowerLevelKey];
+}
+
+-(NSNumber*)isConnectable{
+    return data[CBAdvertisementDataIsConnectable];
+}
+
+-(NSArray*)solicitedServiceUUIDsKey{
+    return data[CBAdvertisementDataSolicitedServiceUUIDsKey];
+}
+
 -(NSDictionary*)dictionaryValue{
-    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    
-    if (self.localNameKey) {
-        [dictionary setObject:self.localNameKey forKey:CBAdvertisementDataLocalNameKey];
-    }
-    if (self.manufacturerDataKey) {
-        [dictionary setObject:self.manufacturerDataKey forKey:CBAdvertisementDataManufacturerDataKey];
-    }
-    if (self.serviceDataKey) {
-        [dictionary setObject:self.manufacturerDataKey forKey:CBAdvertisementDataManufacturerDataKey];
-    }
-    if (self.dataServiceUUIDsKey) {
-        [dictionary setObject:self.manufacturerDataKey forKey:CBAdvertisementDataManufacturerDataKey];
-    }
-    if (self.dataOverflowServiceUUIDsKey) {
-        [dictionary setObject:self.manufacturerDataKey forKey:CBAdvertisementDataManufacturerDataKey];
-    }
-    if (self.dataTxPowerLevelKey) {
-        [dictionary setObject:self.manufacturerDataKey forKey:CBAdvertisementDataManufacturerDataKey];
-    }
-    if (self.dataIsConnectable) {
-        [dictionary setObject:self.manufacturerDataKey forKey:CBAdvertisementDataManufacturerDataKey];
-    }
-    if (self.dataSolicitedServiceUUIDsKey) {
-        [dictionary setObject:self.manufacturerDataKey forKey:CBAdvertisementDataManufacturerDataKey];
-    }
-    if (self.manufacturerDataKey) {
-        [dictionary setObject:self.manufacturerDataKey forKey:CBAdvertisementDataManufacturerDataKey];
-    }
-    
-    return dictionary;
+    return data.copy;
 }
 
 @end
