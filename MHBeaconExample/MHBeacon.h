@@ -10,9 +10,12 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "MHBeaconData.h"
 
-@interface MHBeacon : NSObject <CBPeripheralManagerDelegate>
+@interface MHBeacon : NSObject <CBPeripheralManagerDelegate, CBCentralManagerDelegate>
 
 @property (nonatomic) MHBeaconData *advertisedData;
+@property (nonatomic) NSString *serviceIdentifier;
+
 @property (nonatomic) BOOL advertising;
+@property (nonatomic) BOOL searching;
 
 @end
