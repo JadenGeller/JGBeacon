@@ -42,15 +42,12 @@
 
 -(void)centralManagerDidUpdateState:(CBCentralManager *)central{
     if(central.state==CBCentralManagerStatePoweredOn) {
-        NSLog(@"R - Ready to go");
         [self scan];
     }
 }
 
 - (void)scan
 {
-    NSLog(@"R - Scanning");
-
     [self.centralManager scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]] options:@{ CBCentralManagerScanOptionAllowDuplicatesKey : @YES }];
     
 }
@@ -61,8 +58,7 @@
     
     if (![self.syncedPeripherals containsObject:peripheral]) {
         // New peripheral
-        NSLog(@"R - Connecting to %@", peripheral);
-
+        
         // Save a local copy of the peripheral because ARC
         [self.syncedPeripherals addObject:peripheral];
         [self.centralManager connectPeripheral:peripheral options:nil];
@@ -73,8 +69,7 @@
 {
     // Clear data
     [self dataForPeripheral:peripheral].length = 0;
-    NSLog(@"R - Connected to %@", peripheral);
-
+    
     peripheral.delegate = self;
     [peripheral discoverServices:@[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]]];
 }
@@ -92,11 +87,8 @@
 {
     
     for (CBCharacteristic *characteristic in service.characteristics) {
-        NSLog(@"R - Found characteristic %@ in service %@ for peripheral %@",characteristic, service, peripheral.name);
-
         if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID]]) {
             [peripheral setNotifyValue:YES forCharacteristic:characteristic];
-            NSLog(@"R - Will notify for characteristic %@", characteristic);
         }
     }
 }
@@ -104,13 +96,13 @@
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
 {
     if (error) {
-        NSLog(@"R - Error discovering characteristics: %@", [error localizedDescription]);
+        NSLog(@"Error discovering characteristics: %@", [error localizedDescription]);
         return;
     }
     
-    NSLog(@"R - Looks like we got something...");
+    NSLog(@"Looks like we got something...");
     NSString *stringFromData = [[NSString alloc] initWithData:characteristic.value encoding:NSUTF8StringEncoding];
-    NSLog(@"R - %@, aka %@ maybe.", characteristic.value, stringFromData);
+    NSLog(@"%@, aka %@ maybe.", characteristic.value, stringFromData);
 
     if ([stringFromData isEqualToString:@"EOM"]) {
         // End of mesages
@@ -121,12 +113,10 @@
         });
         
         // Cancel subscription and disconnect and clear
-        //[peripheral setNotifyValue:NO forCharacteristic:characteristic];
+        [peripheral setNotifyValue:NO forCharacteristic:characteristic];
         [self dataForPeripheral:peripheral].length = 0;
-        
-        //NSLog(@"R - CANCELING peripheral connnection cuz im not a hog");
         //[self.centralManager cancelPeripheralConnection:peripheral];
-        
+
     }
     else{
         [[self dataForPeripheral:peripheral] appendData:characteristic.value];
@@ -136,7 +126,7 @@
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
 {
     if (error) {
-        NSLog(@"R - Error changing notification state: %@", error.localizedDescription);
+        NSLog(@"Error changing notification state: %@", error.localizedDescription);
     }
 }
 
@@ -146,7 +136,6 @@
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
-    NSLog(@"R - DISCONNECTING FROM %@ OKAI?", peripheral.name);
     [self.syncedPeripherals removeObject:peripheral];
     
     // We're disconnected, so start scanning again
