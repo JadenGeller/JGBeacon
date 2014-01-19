@@ -11,7 +11,7 @@
 
 @interface MHSendBeacon : NSObject
 
-@property (nonatomic) NSMutableArray *sendQueue;
-@property (nonatomic) BOOL advertising;
+-(void)sendData:(NSData*)data;
+-(void)stop;
 
 @end

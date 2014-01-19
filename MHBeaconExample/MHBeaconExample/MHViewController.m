@@ -36,7 +36,7 @@
 }
 - (IBAction)testPress:(id)sender {
     num++;
-    [self.beacon sendData:[@"HELLO" dataUsingEncoding:NSUTF8StringEncoding]];
+    [self.beacon sendData:[[NSString stringWithFormat:@"%i",num]dataUsingEncoding:NSUTF8StringEncoding]];
 }
 
 - (void)didReceiveMemoryWarning

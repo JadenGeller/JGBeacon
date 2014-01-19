@@ -60,6 +60,10 @@
 		D7A3AA90188A50A4009F67FD /* MHBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHBeacon.h; sourceTree = "<group>"; };
 		D7A3AA91188A50A4009F67FD /* MHBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHBeacon.m; sourceTree = "<group>"; };
 		D7A3AA93188A5130009F67FD /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		D7A3AA95188A54EB009F67FD /* MHBeaconData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHBeaconData.h; sourceTree = "<group>"; };
+		D7A3AA96188A54EB009F67FD /* MHBeaconData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHBeaconData.m; sourceTree = "<group>"; };
+		D7F12D67188AE9C100FE28AC /* MHSyncBeacona.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHSyncBeacona.h; path = MHBeaconExample/MHSyncBeacona.h; sourceTree = "<group>"; };
+		D7F12D68188AE9C100FE28AC /* MHSyncBeacona.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHSyncBeacona.m; path = MHBeaconExample/MHSyncBeacona.m; sourceTree = "<group>"; };
 		D7F12D6C188B218200FE28AC /* MHSendBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHSendBeacon.h; sourceTree = "<group>"; };
 		D7F12D6D188B218200FE28AC /* MHSendBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHSendBeacon.m; sourceTree = "<group>"; };
 		D7F12D6F188B219300FE28AC /* MHReceiveBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHReceiveBeacon.h; sourceTree = "<group>"; };
@@ -174,6 +178,10 @@
 			children = (
 				D7A3AA90188A50A4009F67FD /* MHBeacon.h */,
 				D7A3AA91188A50A4009F67FD /* MHBeacon.m */,
+				D7A3AA95188A54EB009F67FD /* MHBeaconData.h */,
+				D7A3AA96188A54EB009F67FD /* MHBeaconData.m */,
+				D7F12D67188AE9C100FE28AC /* MHSyncBeacona.h */,
+				D7F12D68188AE9C100FE28AC /* MHSyncBeacona.m */,
 				D7F12D72188B21A200FE28AC /* MHSyncBeacon.h */,
 				D7F12D73188B21A200FE28AC /* MHSyncBeacon.m */,
 				D7F12D6C188B218200FE28AC /* MHSendBeacon.h */,
