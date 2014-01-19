@@ -61,7 +61,7 @@
     // Clear data
     [self.data setLength:0];
     
-    //peripheral.delegate = self;
+    peripheral.delegate = self;
     [peripheral discoverServices:@[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]]];
 }
 
@@ -99,6 +99,8 @@
         // Cancel subscription and disconnect and clear
         [peripheral setNotifyValue:NO forCharacteristic:characteristic];
         self.data = [NSMutableData data];
+        //[self.centralManager cancelPeripheralConnection:peripheral];
+
     }
     else{
         [self.data appendData:characteristic.value];
@@ -110,6 +112,10 @@
     if (error) {
         NSLog(@"Error changing notification state: %@", error.localizedDescription);
     }
+}
+
+-(void)peripheral:(CBPeripheral *)peripheral didModifyServices:(NSArray *)invalidatedServices{
+    
 }
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error

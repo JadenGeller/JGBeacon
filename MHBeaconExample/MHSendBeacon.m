@@ -16,6 +16,7 @@
 @property (nonatomic, readonly) NSData *currentData;
 @property (nonatomic) NSInteger sendDataIndex;
 @property (nonatomic) BOOL waitingToSend;
+@property (nonatomic) CBMutableService *transferService;
 
 @end
 
@@ -25,6 +26,7 @@
     if (self = [super init]) {
         _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
         _dataToSend = [NSMutableArray array];
+        _transferCharacteristic = [[CBMutableCharacteristic alloc] initWithType:[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID] properties:CBCharacteristicPropertyNotify value:nil permissions:CBAttributePermissionsReadable];
     }
     return self;
 }
@@ -35,12 +37,13 @@
 
 - (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral
 {
-    if (peripheral.state == CBPeripheralManagerStatePoweredOn) {
-        self.transferCharacteristic = [[CBMutableCharacteristic alloc] initWithType:[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID] properties:CBCharacteristicPropertyNotify value:nil permissions:CBAttributePermissionsReadable];
+    if (peripheral.state == CBPeripheralManagerStatePoweredOn && peripheral) {
         
-        CBMutableService *transferService = [[CBMutableService alloc] initWithType:[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID] primary:YES];
-        transferService.characteristics = @[self.transferCharacteristic];
-        [self.peripheralManager addService:transferService];
+        if (!self.transferService) {
+            self.transferService = [[CBMutableService alloc] initWithType:[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID] primary:YES];
+            self.transferService.characteristics = @[self.transferCharacteristic];
+            [peripheral addService:self.transferService];
+        }
         
         if (self.waitingToSend) {
             self.waitingToSend = NO;
@@ -82,6 +85,7 @@
 
 - (void)sendData
 {
+    NSLog(@"%@",self.dataToSend);
     BOOL stillSending = self.sendDataIndex < self.currentData.length;
     
     if (stillSending) {
@@ -91,9 +95,9 @@
     if (!stillSending) {
         if ([self.peripheralManager updateValue:[@"EOM" dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:self.transferCharacteristic onSubscribedCentrals:nil]) {
             
-            if (self.dataToSend.count > 1)
+            [self.dataToSend removeObjectAtIndex:0];
+            if (self.dataToSend.count > 0)
             {
-                [self.dataToSend removeObjectAtIndex:0];
                 self.sendDataIndex = 0;
                 [self sendData];
             }
