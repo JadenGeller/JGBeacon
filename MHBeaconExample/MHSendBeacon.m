@@ -12,7 +12,8 @@
 
 @property (nonatomic) CBPeripheralManager *peripheralManager;
 @property (nonatomic) CBMutableCharacteristic *transferCharacteristic;
-@property (nonatomic) NSData *dataToSend;
+@property (nonatomic) NSMutableArray *dataToSend;
+@property (nonatomic, readonly) NSData *currentData;
 @property (nonatomic) NSInteger sendDataIndex;
 @property (nonatomic) BOOL waitingToSend;
 
@@ -23,8 +24,13 @@
 -(id)init{
     if (self = [super init]) {
         _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
+        _dataToSend = [NSMutableArray array];
     }
     return self;
+}
+
+-(NSData*)currentData{
+    return (NSData*)self.dataToSend[0];
 }
 
 - (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral
@@ -49,18 +55,17 @@
 
 - (void)peripheralManager:(CBPeripheralManager *)peripheral central:(CBCentral *)central didSubscribeToCharacteristic:(CBCharacteristic *)characteristic
 {
-    // Reset the index
     self.sendDataIndex = 0;
-    
-    // Start sending
     [self sendData];
 }
 
 -(void)sendData:(NSData *)data{
-    self.dataToSend = data;
+    [self.dataToSend addObject:data];
     
     if (self.peripheralManager.state == CBPeripheralManagerStatePoweredOn) {
-        [self startAdvertising];
+        if (!self.peripheralManager.isAdvertising) {
+            [self startAdvertising];
+        }
     }
     else{
         self.waitingToSend = YES;
@@ -77,57 +82,38 @@
 
 - (void)sendData
 {
-    static BOOL sendingEOM = NO;
+    BOOL stillSending = self.sendDataIndex < self.currentData.length;
     
-    if (sendingEOM) {
-
+    if (stillSending) {
+        while ([self keepSending]);
+    }
+    
+    if (!stillSending) {
         if ([self.peripheralManager updateValue:[@"EOM" dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:self.transferCharacteristic onSubscribedCentrals:nil]) {
             
-            //Successfully sent
-            sendingEOM = NO;
-        }
-    }
-    else{
-        //Send data
-        
-        if (self.sendDataIndex < self.dataToSend.length) {
-            // Still data to send
-            
-            while (YES) {
-                
-                // Make the next chunk
-                
-                // Work out how big it should be
-                NSInteger amountToSend = self.dataToSend.length - self.sendDataIndex;
-                
-                // Can't be longer than 20 bytes
-                if (amountToSend > BT_DATA_SIZE_LIMIT) amountToSend = BT_DATA_SIZE_LIMIT;
-                
-                // Copy out the data we want
-                NSData *chunk = [NSData dataWithBytes:self.dataToSend.bytes+self.sendDataIndex length:amountToSend];
-                
-                if ([self.peripheralManager updateValue:chunk forCharacteristic:self.transferCharacteristic onSubscribedCentrals:nil]) {
-                    // Sent segment successfully
-                    
-                    // Update index
-                    self.sendDataIndex += amountToSend;
-                    
-                    if (self.sendDataIndex >= self.dataToSend.length) {
-                        // Was last section; send an EOM
-                        
-                        // Set this so if the send fails, we'll send it next time
-                        sendingEOM = YES;
-                        
-                        if ([self.peripheralManager updateValue:[@"EOM" dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:self.transferCharacteristic onSubscribedCentrals:nil]) {
-                            // It sent, so no need to send again
-                            sendingEOM = NO;
-                        }
-                    }
-                }
-                else return; // Error, so let's quit and wait
-                
+            if (self.dataToSend.count > 1)
+            {
+                [self.dataToSend removeObjectAtIndex:0];
+                self.sendDataIndex = 0;
+                [self sendData];
             }
         }
+
+    }
+}
+
+-(BOOL)keepSending{
+    NSInteger amountToSend = self.currentData.length - self.sendDataIndex;
+    if (amountToSend > BT_DATA_SIZE_LIMIT) amountToSend = BT_DATA_SIZE_LIMIT;
+    
+    NSData *chunk = [NSData dataWithBytes:self.currentData.bytes+self.sendDataIndex length:amountToSend];
+    
+    if ([self.peripheralManager updateValue:chunk forCharacteristic:self.transferCharacteristic onSubscribedCentrals:nil]) {
+        self.sendDataIndex += amountToSend;
+        return YES;
+    }
+    else{
+        return NO;
     }
 }
 

@@ -27,7 +27,11 @@
         NSLog(@"%@", [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
     };
     [self.beacon sendData:[@"hey" dataUsingEncoding:NSUTF8StringEncoding]];
-        
+    [self.beacon sendData:[@"HOW ARE YOU DOING TODAY ARENT YOU DOING WELL CUZ ITS SATURDAY" dataUsingEncoding:NSUTF8StringEncoding]];
+    [self.beacon sendData:[@"WEll actulaly I DIDNT know THAT cuz NO SLEeep !!! anhghhahh!!!!" dataUsingEncoding:NSUTF8StringEncoding]];
+    [self.beacon sendData:[@"yo" dataUsingEncoding:NSUTF8StringEncoding]];
+
+    
 }
 
 - (void)didReceiveMemoryWarning
