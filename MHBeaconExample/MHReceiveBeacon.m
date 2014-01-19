@@ -121,10 +121,12 @@
         });
         
         // Cancel subscription and disconnect and clear
-        [peripheral setNotifyValue:NO forCharacteristic:characteristic];
+        //[peripheral setNotifyValue:NO forCharacteristic:characteristic];
         [self dataForPeripheral:peripheral].length = 0;
+        
+        //NSLog(@"R - CANCELING peripheral connnection cuz im not a hog");
         //[self.centralManager cancelPeripheralConnection:peripheral];
-
+        
     }
     else{
         [[self dataForPeripheral:peripheral] appendData:characteristic.value];
