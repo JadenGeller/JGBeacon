@@ -71,10 +71,7 @@
     [super viewDidLoad];
     self.sendBeacon = [[BTSendBeacon alloc]init];
     
-    BTLEPeripheralViewController __block *blockself = self;
-    self.sendBeacon.dataToSend = ^ NSData*(){
-        return [blockself.textView.text dataUsingEncoding:NSUTF8StringEncoding];
-    };
+    [self.sendBeacon queueDataToSend: [self.textView.text dataUsingEncoding:NSUTF8StringEncoding]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

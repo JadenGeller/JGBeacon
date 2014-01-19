@@ -11,7 +11,8 @@
 @interface BTSendBeacon : NSObject
 
 @property (nonatomic) BOOL advertising;
+@property (nonatomic, readonly) BOOL sending;
 
-@property (nonatomic, copy) NSData * (^dataToSend)();
+-(void)queueDataToSend:(NSData*)data;
 
 @end

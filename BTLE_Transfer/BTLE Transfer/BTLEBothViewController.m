@@ -77,9 +77,8 @@
     
     BTLEBothViewController __block *blockself = self;
     
-    self.sendBeacon.dataToSend = ^ NSData*(){
-        return [blockself.outTextView.text dataUsingEncoding:NSUTF8StringEncoding];
-    };
+    [self.sendBeacon queueDataToSend: [self.outTextView.text dataUsingEncoding:NSUTF8StringEncoding]];
+    
     
     self.receiveBeacon = [[BTRecieveBeacon alloc]init];
     

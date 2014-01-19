@@ -18,6 +18,7 @@
 @property (strong, nonatomic) CBMutableCharacteristic   *transferCharacteristic;
 @property (strong, nonatomic) NSData                    *theData;
 @property (nonatomic, readwrite) NSInteger              sendDataIndex;
+@property (nonatomic) NSMutableArray *dataToSend;
 
 @end
 
@@ -27,9 +28,15 @@
     if (self = [super init]) {
         // Start up the CBPeripheralManager
         _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
-
     }
     return self;
+}
+
+-(NSMutableArray*)dataToSend{
+    if (!_dataToSend) {
+        _dataToSend = [NSMutableArray array];
+    }
+    return _dataToSend;
 }
 
 #pragma mark - Peripheral Methods
@@ -73,12 +80,6 @@
 {
     NSLog(@"Central subscribed to characteristic");
     
-    // Get the data
-    self.theData = self.dataToSend();
-    
-    // Reset the index
-    self.sendDataIndex = 0;
-    
     // Start sending
     [self sendData];
 }
@@ -96,6 +97,20 @@
  */
 - (void)sendData
 {
+    if (!self.theData) {
+        // Get the data
+        if (self.dataToSend.count > 0) {
+            self.theData = [self.dataToSend objectAtIndex:0];
+            [self.dataToSend removeObjectAtIndex:0];
+        }
+        else _sending = NO;;
+        
+        // Reset the index
+        self.sendDataIndex = 0;
+    }
+    
+    _sending = YES;
+    
     // First up, check if we're meant to be sending an EOM
     static BOOL sendingEOM = NO;
     
@@ -109,7 +124,7 @@
             
             // It did, so mark it as sent
             sendingEOM = NO;
-            
+            self.theData = nil;
             NSLog(@"Sent: EOM");
         }
         
@@ -174,6 +189,7 @@
                 sendingEOM = NO;
                 
                 NSLog(@"Sent: EOM");
+                self.theData = nil;
             }
             
             return;
@@ -187,7 +203,6 @@
  */
 - (void)peripheralManagerIsReadyToUpdateSubscribers:(CBPeripheralManager *)peripheral
 {
-    // Start sending again
     [self sendData];
 }
 
@@ -200,6 +215,11 @@
     else{
         [self.peripheralManager stopAdvertising];
     }
+}
+
+-(void)queueDataToSend:(NSData*)data{
+    [self.dataToSend addObject:data];
+    if (!self.sending)[self sendData];
 }
 
 
