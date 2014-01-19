@@ -38,7 +38,7 @@
 - (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral
 {
     if (peripheral.state == CBPeripheralManagerStatePoweredOn && peripheral) {
-        //NSLog(@"I'm ready to go!");
+        NSLog(@"S - I'm ready to go!");
 
         if (!self.transferService) {
             self.transferService = [[CBMutableService alloc] initWithType:[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID] primary:YES];
@@ -77,36 +77,36 @@
 }
 
 -(void)startAdvertising{
-    //NSLog(@"Ads are the shit.");
+    NSLog(@"S - Ads are the shit.");
     [self.peripheralManager startAdvertising:@{CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]]}];
 }
 
 -(void)stop{
-    //NSLog(@"Who dood, what's with that adblock.");
+    NSLog(@"S - Who dood, what's with that adblock.");
     [self.peripheralManager stopAdvertising];
 }
 
 - (void)sendData
 {
-    //NSLog(@"Ready to begin sending");
+    NSLog(@"S - Ready to begin sending");
     if (self.dataToSend.count > 0) {
         BOOL stillSending = self.sendDataIndex < self.currentData.length;
         
         if (stillSending) {
-            //NSLog(@"Sending packets pew pew pew");
+            NSLog(@"S - Sending packets pew pew pew");
             while ([self keepSending]);
         }
         
         if (!stillSending) {
-            //NSLog(@"I'll end that message for you dood");
+            NSLog(@"S - I'll end that message for you dood");
 
             if ([self.peripheralManager updateValue:[@"EOM" dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:self.transferCharacteristic onSubscribedCentrals:nil]) {
-                //NSLog(@"Ended successfully");
+                NSLog(@"S - Ended successfully");
 
                 [self.dataToSend removeObjectAtIndex:0];
                 if (self.dataToSend.count > 0)
                 {
-                    //NSLog(@"Time for another round");
+                    NSLog(@"S - Time for another round");
                     self.sendDataIndex = 0;
                     [self sendData];
                 }
@@ -114,7 +114,7 @@
             
         }
     }
-    //else NSLog(@"Shucks, all out of data to send...");
+    else NSLog(@"S - Shucks, all out of data to send...");
 }
 
 -(BOOL)keepSending{
@@ -123,14 +123,14 @@
     
     NSData *chunk = [NSData dataWithBytes:self.currentData.bytes+self.sendDataIndex length:amountToSend];
     
-    //NSLog(@"Will send this one");
+    NSLog(@"S - Will send this one");
     if ([self.peripheralManager updateValue:chunk forCharacteristic:self.transferCharacteristic onSubscribedCentrals:nil]) {
-        //NSLog(@"Did send this one");
+        NSLog(@"S - Did send this one");
         self.sendDataIndex += amountToSend;
         return YES;
     }
     else{
-        //NSLog(@"Fuck shit no that was bad.");
+        NSLog(@"S - Fuck shit no that was bad.");
         return NO;
     }
 }
@@ -138,7 +138,7 @@
 - (void)peripheralManagerIsReadyToUpdateSubscribers:(CBPeripheralManager *)peripheral
 {
     // Start sending again
-    //NSLog(@"Oops, messed up sending. I'll try again.");
+    NSLog(@"S - Oops, messed up sending. I'll try again.");
     [self sendData];
 }
 
