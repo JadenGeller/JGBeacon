@@ -144,6 +144,7 @@
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
+    NSLog(@"R - DISCONNECTING FROM %@ OKAI?", peripheral.name);
     [self.syncedPeripherals removeObject:peripheral];
     
     // We're disconnected, so start scanning again
