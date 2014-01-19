@@ -92,7 +92,7 @@
 
 - (void)sendData
 {
-    NSLog(@"S - Ready to begin sending with count of %i", self.dataToSend.count);
+    NSLog(@"S - Ready to begin sending with count of %lu", (unsigned long)self.dataToSend.count);
     if (self.dataToSend.count > 0) {
         BOOL stillSending = self.sendDataIndex < self.currentData.length;
         
