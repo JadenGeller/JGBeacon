@@ -66,19 +66,11 @@
         // Save a local copy of the peripheral because ARC
         [self.syncedPeripherals addObject:peripheral];
         [self.centralManager connectPeripheral:peripheral options:nil];
-        NSLog(@"THIS IS THE COUNT STAY SMALL %lu", (unsigned long)self.syncedPeripherals.count);
     }
-}
-
-- (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
-{
-    NSLog(@"Failed to connect to %@. (%@)", peripheral, [error localizedDescription]);
 }
 
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
 {
-    [self.centralManager stopScan];
-
     // Clear data
     [self dataForPeripheral:peripheral].length = 0;
     NSLog(@"R - Connected to %@", peripheral);
@@ -89,9 +81,7 @@
 
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error
 {
-    if (error) {
-        return;
-    }
+    
     for (CBService *service in peripheral.services) {
         
         [peripheral discoverCharacteristics:@[[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID]] forService:service];
@@ -101,9 +91,6 @@
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error
 {
     
-    if (error) {
-        return;
-    }
     for (CBCharacteristic *characteristic in service.characteristics) {
         NSLog(@"R - Found characteristic %@ in service %@ for peripheral %@",characteristic, service, peripheral.name);
 
@@ -127,19 +114,18 @@
 
     if ([stringFromData isEqualToString:@"EOM"]) {
         // End of mesages
-        NSLog(@"END OF MESSAGE");
         
         dispatch_async(dispatch_get_main_queue(), ^{
             self.dataReceived([self dataForPeripheral:peripheral].copy);
-            
+
         });
         
         // Cancel subscription and disconnect and clear
-        [peripheral setNotifyValue:NO forCharacteristic:characteristic];
+        //[peripheral setNotifyValue:NO forCharacteristic:characteristic];
         [self dataForPeripheral:peripheral].length = 0;
         
         //NSLog(@"R - CANCELING peripheral connnection cuz im not a hog");
-        [self.centralManager cancelPeripheralConnection:peripheral];
+        //[self.centralManager cancelPeripheralConnection:peripheral];
         
     }
     else{
@@ -152,10 +138,6 @@
     if (error) {
         NSLog(@"R - Error changing notification state: %@", error.localizedDescription);
     }
-    
-    if (!characteristic.isNotifying) {
-        [self.centralManager cancelPeripheralConnection:peripheral];
-    }
 }
 
 -(void)peripheral:(CBPeripheral *)peripheral didModifyServices:(NSArray *)invalidatedServices{
@@ -164,9 +146,6 @@
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
-    if (error) {
-        return;
-    }
     NSLog(@"R - DISCONNECTING FROM %@ OKAI?", peripheral.name);
     [self.syncedPeripherals removeObject:peripheral];
     
