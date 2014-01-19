@@ -85,24 +85,27 @@
 
 - (void)sendData
 {
-    BOOL stillSending = self.sendDataIndex < self.currentData.length;
-    
-    if (stillSending) {
-        while ([self keepSending]);
-    }
-    
-    if (!stillSending) {
-        if ([self.peripheralManager updateValue:[@"EOM" dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:self.transferCharacteristic onSubscribedCentrals:nil]) {
-            
-            [self.dataToSend removeObjectAtIndex:0];
-            if (self.dataToSend.count > 0)
-            {
-                self.sendDataIndex = 0;
-                [self sendData];
-            }
+    if (self.dataToSend.count > 0) {
+        BOOL stillSending = self.sendDataIndex < self.currentData.length;
+        
+        if (stillSending) {
+            while ([self keepSending]);
         }
-
+        
+        if (!stillSending) {
+            if ([self.peripheralManager updateValue:[@"EOM" dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:self.transferCharacteristic onSubscribedCentrals:nil]) {
+                
+                [self.dataToSend removeObjectAtIndex:0];
+                if (self.dataToSend.count > 0)
+                {
+                    self.sendDataIndex = 0;
+                    [self sendData];
+                }
+            }
+            
+        }
     }
+
 }
 
 -(BOOL)keepSending{
