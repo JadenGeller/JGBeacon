@@ -85,7 +85,6 @@
 
 - (void)sendData
 {
-    NSLog(@"%@",self.dataToSend);
     BOOL stillSending = self.sendDataIndex < self.currentData.length;
     
     if (stillSending) {

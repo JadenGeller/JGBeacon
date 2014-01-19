@@ -12,25 +12,25 @@
 
 @interface MHSyncBeacon ()
 
-@property (nonatomic) MHSendBeacon *sharedSendBeacon;
-@property (nonatomic) MHReceiveBeacon *sharedReceiveBeacon;
+@property (nonatomic) MHSendBeacon *sendBeacon;
+@property (nonatomic) MHReceiveBeacon *receiveBeacon;
 
 @end
 
 @implementation MHSyncBeacon
 
 -(void)sendData:(NSData*)data{
-    [self.sharedSendBeacon sendData:data];
+    [self.sendBeacon sendData:data];
 }
 
 -(void)setDataReceived:(void (^)(NSData *))dataReceived{
-    self.sharedReceiveBeacon.dataReceived = dataReceived;
+    self.receiveBeacon.dataReceived = dataReceived;
 }
 
 -(id)init{
     if (self = [super init]) {
-        _sharedSendBeacon = [[MHSendBeacon alloc]init];
-        _sharedReceiveBeacon = [[MHReceiveBeacon alloc]init];
+        _sendBeacon = [[MHSendBeacon alloc]init];
+        _receiveBeacon = [[MHReceiveBeacon alloc]init];
     }
     return self;
 }

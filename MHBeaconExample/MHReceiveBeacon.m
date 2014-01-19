@@ -51,15 +51,15 @@
         [self.syncedPeripherals addObject:peripheral];
         
         [self.centralManager connectPeripheral:peripheral options:nil];
+        [self.centralManager stopScan];
     }
 }
 
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
 {
-    [self.centralManager stopScan];
     
     // Clear data
-    [self.data setLength:0];
+    self.data.length=0;
     
     peripheral.delegate = self;
     [peripheral discoverServices:@[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]]];
@@ -98,7 +98,7 @@
         
         // Cancel subscription and disconnect and clear
         [peripheral setNotifyValue:NO forCharacteristic:characteristic];
-        self.data = [NSMutableData data];
+        self.data.length = 0;
         //[self.centralManager cancelPeripheralConnection:peripheral];
 
     }
