@@ -33,7 +33,7 @@
 
 -(id)init{
     if (self = [super init]) {
-        _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+        _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
         _data = [[NSMutableDictionary alloc] init];
         _syncedPeripherals = [NSMutableSet set];
     }
