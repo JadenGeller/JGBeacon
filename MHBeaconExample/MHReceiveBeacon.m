@@ -93,8 +93,11 @@
     NSString *stringFromData = [[NSString alloc] initWithData:characteristic.value encoding:NSUTF8StringEncoding];
     if ([stringFromData isEqualToString:@"EOM"]) {
         // End of mesages
-                
-        self.dataReceived(self.data.copy);
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.dataReceived(self.data.copy);
+
+        });
         
         // Cancel subscription and disconnect and clear
         [peripheral setNotifyValue:NO forCharacteristic:characteristic];

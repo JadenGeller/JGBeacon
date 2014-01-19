@@ -23,8 +23,10 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     self.beacon = [MHSyncBeacon beacon];
+    
+    __block MHViewController *blockSelf = self;
     self.beacon.dataReceived = ^void (NSData *data){
-        NSLog(@"%@", [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
+        blockSelf.textView.text = [NSString stringWithFormat:@"%@\n%@",blockSelf.textView.text,[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]];
     };
     [self.beacon sendData:[@"hey" dataUsingEncoding:NSUTF8StringEncoding]];
     [self.beacon sendData:[@"HOW ARE YOU DOING TODAY ARENT YOU DOING WELL CUZ ITS SATURDAY" dataUsingEncoding:NSUTF8StringEncoding]];
