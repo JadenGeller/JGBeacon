@@ -20,7 +20,7 @@
 @implementation MHSyncBeacon
 
 -(void)sendData:(NSData*)data{
-    [self.sendBeacon sendData:data];
+    [self.sendBeacon.sendQueue addObject:data];
 }
 
 -(void)setDataReceived:(void (^)(NSData *))dataReceived{
