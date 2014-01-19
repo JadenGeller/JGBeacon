@@ -23,12 +23,24 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CjO-nt-wxb">
+                                <rect key="frame" x="137" y="518" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="testPress:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Ulm-i3-DsX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="aYV-IZ-Tsn" secondAttribute="trailing" id="7YA-Vo-eKr"/>
                             <constraint firstItem="aYV-IZ-Tsn" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="AeD-kF-f8M"/>
+                            <constraint firstItem="aYV-IZ-Tsn" firstAttribute="bottom" secondItem="CjO-nt-wxb" secondAttribute="bottom" constant="20" id="axj-y3-W9t"/>
                             <constraint firstItem="aYV-IZ-Tsn" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="20" symbolic="YES" id="kqN-pC-lAD"/>
+                            <constraint firstItem="CjO-nt-wxb" firstAttribute="centerX" secondItem="aYV-IZ-Tsn" secondAttribute="centerX" id="pVs-DI-zav"/>
                             <constraint firstAttribute="bottom" secondItem="aYV-IZ-Tsn" secondAttribute="bottom" id="yeS-bq-z6M"/>
                         </constraints>
                     </view>

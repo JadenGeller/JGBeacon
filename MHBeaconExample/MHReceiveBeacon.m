@@ -14,16 +14,27 @@
 
 @property (nonatomic) CBCentralManager *centralManager;
 @property (nonatomic) NSMutableSet *syncedPeripherals;
-@property (nonatomic) NSMutableData *data;
+@property (nonatomic) NSMutableDictionary *data;
+
+-(NSMutableData*)dataForPeripheral:(CBPeripheral*)peripheral;
 
 @end
 
 @implementation MHReceiveBeacon
 
+-(NSMutableData*)dataForPeripheral:(CBPeripheral*)peripheral{
+    NSMutableData *data = (NSMutableData*)self.data[peripheral];
+    if (!data) {
+        data = [NSMutableData data];
+        self.data[peripheral] = data;
+    }
+    return data;
+}
+
 -(id)init{
     if (self = [super init]) {
         _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
-        _data = [[NSMutableData alloc] init];
+        _data = [[NSMutableDictionary alloc] init];
         _syncedPeripherals = [NSMutableSet set];
     }
     return self;
@@ -37,29 +48,27 @@
 
 - (void)scan
 {
-    [self.centralManager scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]] options:@{CBCentralManagerScanOptionAllowDuplicatesKey : @YES}];
+    [self.centralManager scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]] options:@{ CBCentralManagerScanOptionAllowDuplicatesKey : @YES }];
     
 }
 
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
+    // CONNECT TO THE DEVICES HERE
     
     if (![self.syncedPeripherals containsObject:peripheral]) {
         // New peripheral
         
         // Save a local copy of the peripheral because ARC
         [self.syncedPeripherals addObject:peripheral];
-        
         [self.centralManager connectPeripheral:peripheral options:nil];
-        [self.centralManager stopScan];
     }
 }
 
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
 {
-    
     // Clear data
-    self.data.length=0;
+    [self dataForPeripheral:peripheral].length = 0;
     
     peripheral.delegate = self;
     [peripheral discoverServices:@[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]]];
@@ -69,6 +78,7 @@
 {
     
     for (CBService *service in peripheral.services) {
+        
         [peripheral discoverCharacteristics:@[[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID]] forService:service];
     }
 }
@@ -90,23 +100,26 @@
         return;
     }
     
+    NSLog(@"Looks like we got something...");
     NSString *stringFromData = [[NSString alloc] initWithData:characteristic.value encoding:NSUTF8StringEncoding];
+    NSLog(@"%@, aka %@ maybe.", characteristic.value, stringFromData);
+
     if ([stringFromData isEqualToString:@"EOM"]) {
         // End of mesages
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.dataReceived(self.data.copy);
+            self.dataReceived([self dataForPeripheral:peripheral].copy);
 
         });
         
         // Cancel subscription and disconnect and clear
         [peripheral setNotifyValue:NO forCharacteristic:characteristic];
-        self.data.length = 0;
+        [self dataForPeripheral:peripheral].length = 0;
         //[self.centralManager cancelPeripheralConnection:peripheral];
 
     }
     else{
-        [self.data appendData:characteristic.value];
+        [[self dataForPeripheral:peripheral] appendData:characteristic.value];
     }
 }
 

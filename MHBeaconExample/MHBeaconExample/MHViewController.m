@@ -10,6 +10,9 @@
 #import "MHSyncBeacon.h"
 
 @interface MHViewController ()
+{
+    int num;
+}
 
 @property (nonatomic) MHSyncBeacon *beacon;
 
@@ -28,12 +31,12 @@
     self.beacon.dataReceived = ^void (NSData *data){
         blockSelf.textView.text = [NSString stringWithFormat:@"%@\n%@",blockSelf.textView.text,[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]];
     };
-    [self.beacon sendData:[@"hey" dataUsingEncoding:NSUTF8StringEncoding]];
-    [self.beacon sendData:[@"HOW ARE YOU DOING TODAY ARENT YOU DOING WELL CUZ ITS SATURDAY" dataUsingEncoding:NSUTF8StringEncoding]];
-    [self.beacon sendData:[@"WEll actulaly I DIDNT know THAT cuz NO SLEeep !!! anhghhahh!!!!" dataUsingEncoding:NSUTF8StringEncoding]];
-    [self.beacon sendData:[@"yo" dataUsingEncoding:NSUTF8StringEncoding]];
 
     
+}
+- (IBAction)testPress:(id)sender {
+    num++;
+    [self.beacon sendData:[[NSString stringWithFormat:@"%i",num]dataUsingEncoding:NSUTF8StringEncoding]];
 }
 
 - (void)didReceiveMemoryWarning
