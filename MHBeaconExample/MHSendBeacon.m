@@ -24,7 +24,7 @@
 
 -(id)init{
     if (self = [super init]) {
-        _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
+        _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
         _dataToSend = [NSMutableArray array];
         _transferCharacteristic = [[CBMutableCharacteristic alloc] initWithType:[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID] properties:CBCharacteristicPropertyNotify value:nil permissions:CBAttributePermissionsReadable];
     }
