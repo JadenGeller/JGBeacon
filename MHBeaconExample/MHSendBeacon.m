@@ -64,20 +64,24 @@
 }
 
 -(void)sendData:(NSData *)data{
+    NSLog(@"You requested to send this data %@",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
     [self.dataToSend addObject:data];
     
     if (self.peripheralManager.state == CBPeripheralManagerStatePoweredOn) {
+        NSLog(@"And we are ready for it");
         if (!self.peripheralManager.isAdvertising) {
+            NSLog(@"Just a second");
             [self startAdvertising];
         }
     }
     else{
+        NSLog(@"But you have to wait");
         self.waitingToSend = YES;
     }
 }
 
 -(void)startAdvertising{
-    NSLog(@"S - Ads are the shit.");
+    NSLog(@"S - I'm advertising--no adblock!.");
     [self.peripheralManager startAdvertising:@{CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]]}];
 }
 
@@ -88,7 +92,7 @@
 
 - (void)sendData
 {
-    NSLog(@"S - Ready to begin sending");
+    NSLog(@"S - Ready to begin sending with count of %i", self.dataToSend.count);
     if (self.dataToSend.count > 0) {
         BOOL stillSending = self.sendDataIndex < self.currentData.length;
         

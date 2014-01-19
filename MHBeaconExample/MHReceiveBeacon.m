@@ -61,7 +61,7 @@
     
     if (![self.syncedPeripherals containsObject:peripheral]) {
         // New peripheral
-        NSLog(@"R - Connecting to %@", peripheral.name);
+        NSLog(@"R - Connecting to %@", peripheral);
 
         // Save a local copy of the peripheral because ARC
         [self.syncedPeripherals addObject:peripheral];
@@ -73,7 +73,7 @@
 {
     // Clear data
     [self dataForPeripheral:peripheral].length = 0;
-    NSLog(@"R - Connected to %@", peripheral.name);
+    NSLog(@"R - Connected to %@", peripheral);
 
     peripheral.delegate = self;
     [peripheral discoverServices:@[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]]];
