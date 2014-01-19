@@ -42,12 +42,15 @@
 
 -(void)centralManagerDidUpdateState:(CBCentralManager *)central{
     if(central.state==CBCentralManagerStatePoweredOn) {
+        NSLog(@"R - Ready to go");
         [self scan];
     }
 }
 
 - (void)scan
 {
+    NSLog(@"R - Scanning");
+
     [self.centralManager scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]] options:@{ CBCentralManagerScanOptionAllowDuplicatesKey : @YES }];
     
 }
@@ -58,7 +61,8 @@
     
     if (![self.syncedPeripherals containsObject:peripheral]) {
         // New peripheral
-        
+        NSLog(@"R - Connecting to %@", peripheral.name);
+
         // Save a local copy of the peripheral because ARC
         [self.syncedPeripherals addObject:peripheral];
         [self.centralManager connectPeripheral:peripheral options:nil];
@@ -69,7 +73,8 @@
 {
     // Clear data
     [self dataForPeripheral:peripheral].length = 0;
-    
+    NSLog(@"R - Connected to %@", peripheral.name);
+
     peripheral.delegate = self;
     [peripheral discoverServices:@[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]]];
 }
@@ -87,8 +92,11 @@
 {
     
     for (CBCharacteristic *characteristic in service.characteristics) {
+        NSLog(@"R - Found characteristic %@ in service %@ for peripheral %@",characteristic, service, peripheral.name);
+
         if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID]]) {
             [peripheral setNotifyValue:YES forCharacteristic:characteristic];
+            NSLog(@"R - Will notify for characteristic %@", characteristic);
         }
     }
 }
@@ -96,13 +104,13 @@
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
 {
     if (error) {
-        NSLog(@"Error discovering characteristics: %@", [error localizedDescription]);
+        NSLog(@"R - Error discovering characteristics: %@", [error localizedDescription]);
         return;
     }
     
-    NSLog(@"Looks like we got something...");
+    NSLog(@"R - Looks like we got something...");
     NSString *stringFromData = [[NSString alloc] initWithData:characteristic.value encoding:NSUTF8StringEncoding];
-    NSLog(@"%@, aka %@ maybe.", characteristic.value, stringFromData);
+    NSLog(@"R - %@, aka %@ maybe.", characteristic.value, stringFromData);
 
     if ([stringFromData isEqualToString:@"EOM"]) {
         // End of mesages
@@ -126,7 +134,7 @@
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
 {
     if (error) {
-        NSLog(@"Error changing notification state: %@", error.localizedDescription);
+        NSLog(@"R - Error changing notification state: %@", error.localizedDescription);
     }
 }
 
