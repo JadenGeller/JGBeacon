@@ -81,7 +81,7 @@
     NSLog(@"Central subscribed to characteristic");
     
     // Start sending
-    [self sendData];
+    if (!self.sending) [self sendData];
 }
 
 
@@ -92,109 +92,63 @@
     NSLog(@"Central unsubscribed from characteristic");
 }
 
+-(void)sendData{
+    if (self.dataToSend.count > 0) {
+        _sending = YES;
+        
+        if (!self.theData) {
+            [self sendNewData];
+        }
+        else{
+            [self continueSendingData];
+        }
+    }
+    else{
+        _sending = NO;
+    }
+}
 
-/** Sends the next amount of data to the connected central
- */
-- (void)sendData
+-(void)sendNewData{
+    if (self.dataToSend.count > 0) {
+        self.theData = self.dataToSend[0];
+        [self.dataToSend removeObjectAtIndex:0];
+        [self continueSendingData];
+    }
+}
+
+- (void)continueSendingData
 {
-    if (!self.theData) {
-        // Get the data
-        if (self.dataToSend.count > 0) {
-            self.theData = [self.dataToSend objectAtIndex:0];
-            [self.dataToSend removeObjectAtIndex:0];
-        }
-        else _sending = NO;;
-        
-        // Reset the index
-        self.sendDataIndex = 0;
-    }
-    
-    _sending = YES;
-    
-    // First up, check if we're meant to be sending an EOM
-    static BOOL sendingEOM = NO;
-    
-    if (sendingEOM) {
-        
-        // send it
-        BOOL didSend = [self.peripheralManager updateValue:[@"EOM" dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:self.transferCharacteristic onSubscribedCentrals:nil];
-        
-        // Did it send?
-        if (didSend) {
-            
-            // It did, so mark it as sent
-            sendingEOM = NO;
-            self.theData = nil;
-            NSLog(@"Sent: EOM");
-        }
-        
-        // It didn't send, so we'll exit and wait for peripheralManagerIsReadyToUpdateSubscribers to call sendData again
-        return;
-    }
-    
-    // We're not sending an EOM, so we're sending data
-    
-    // Is there any left to send?
+    while ([self sendPacket]);
     
     if (self.sendDataIndex >= self.theData.length) {
+        // Message completely sent
+        // Attempt sending EOM now
         
-        // No data left.  Do nothing
-        return;
-    }
-    
-    // There's data left, so send until the callback fails, or we're done.
-    
-    BOOL didSend = YES;
-    
-    while (didSend) {
-        
-        // Make the next chunk
-        
-        // Work out how big it should be
-        NSInteger amountToSend = self.theData.length - self.sendDataIndex;
-        
-        // Can't be longer than 20 bytes
-        if (amountToSend > NOTIFY_MTU) amountToSend = NOTIFY_MTU;
-        
-        // Copy out the data we want
-        NSData *chunk = [NSData dataWithBytes:self.theData.bytes+self.sendDataIndex length:amountToSend];
-        
-        // Send it
-        didSend = [self.peripheralManager updateValue:chunk forCharacteristic:self.transferCharacteristic onSubscribedCentrals:nil];
-        
-        // If it didn't work, drop out and wait for the callback
-        if (!didSend) {
-            return;
+        if ([self.peripheralManager updateValue:[@"EOM" dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:self.transferCharacteristic onSubscribedCentrals:nil]) {
+            // Successfully sent EOM
+            
+            self.theData = nil;
+            [self sendNewData];
         }
-        
-        NSString *stringFromData = [[NSString alloc] initWithData:chunk encoding:NSUTF8StringEncoding];
-        NSLog(@"Sent: %@", stringFromData);
-        
-        // It did send, so update our index
+        else _sending = NO; // something went wrong sending the EOM
+    }
+    else _sending = NO; // something went wrong sending a packet
+}
+
+// Returns bool indicating success
+-(BOOL)sendPacket{
+    
+    NSInteger amountToSend = self.theData.length - self.sendDataIndex;
+    if (amountToSend > NOTIFY_MTU) amountToSend = NOTIFY_MTU;
+    else if (amountToSend <= 0) return NO; // done sending, time for EOM
+    
+    NSData *chunk = [NSData dataWithBytes:self.theData.bytes+self.sendDataIndex length:amountToSend];
+    
+    if ([self.peripheralManager updateValue:chunk forCharacteristic:self.transferCharacteristic onSubscribedCentrals:nil]) {
         self.sendDataIndex += amountToSend;
-        
-        // Was it the last one?
-        if (self.sendDataIndex >= self.theData.length) {
-            
-            // It was - send an EOM
-            
-            // Set this so if the send fails, we'll send it next time
-            sendingEOM = YES;
-            
-            // Send it
-            BOOL eomSent = [self.peripheralManager updateValue:[@"EOM" dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:self.transferCharacteristic onSubscribedCentrals:nil];
-            
-            if (eomSent) {
-                // It sent, we're all done
-                sendingEOM = NO;
-                
-                NSLog(@"Sent: EOM");
-                self.theData = nil;
-            }
-            
-            return;
-        }
+        return YES;
     }
+    else return NO; // will later get called again by peripheralManagerIsReadyToUpdateSubscribers
 }
 
 
@@ -203,7 +157,7 @@
  */
 - (void)peripheralManagerIsReadyToUpdateSubscribers:(CBPeripheralManager *)peripheral
 {
-    [self sendData];
+    if (!self.sending) [self sendData];
 }
 
 
@@ -219,7 +173,7 @@
 
 -(void)queueDataToSend:(NSData*)data{
     [self.dataToSend addObject:data];
-    if (!self.sending)[self sendData];
+    if (!self.sending && self.transferCharacteristic) [self sendData];
 }
 
 
