@@ -19,10 +19,17 @@
 @property (strong, nonatomic) NSData                    *theData;
 @property (nonatomic, readwrite) NSInteger              sendDataIndex;
 @property (nonatomic) NSMutableArray *dataToSend;
+
+@property (nonatomic) BOOL shouldStartAdvertising;
 @property (nonatomic) NSMutableArray *subscribers;
+
 @end
 
 @implementation BTSendBeacon
+
++(BTSendBeacon*)beacon{
+    return [[BTSendBeacon alloc]init];
+}
 
 -(id)init{
     if (self = [super init]) {
@@ -46,8 +53,8 @@
  */
 - (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral
 {
-    // Opt out from any other state
     if (peripheral.state == CBPeripheralManagerStatePoweredOn) {
+        
         // We're in CBPeripheralManagerStatePoweredOn state...
         NSLog(@"self.peripheralManager powered on.");
         
@@ -68,9 +75,12 @@
         
         // And add it to the peripheral manager
         [self.peripheralManager addService:transferService];
+        
+        if (self.shouldStartAdvertising) {
+            self.advertising = YES;
+        }
+
     }
-    
-    
 }
 
 
@@ -79,6 +89,7 @@
 - (void)peripheralManager:(CBPeripheralManager *)peripheral central:(CBCentral *)central didSubscribeToCharacteristic:(CBCharacteristic *)characteristic
 {
     NSLog(@"Central subscribed to characteristic");
+    
     [self.subscribers addObject:central];
     
     // Start sending
@@ -91,7 +102,9 @@
 - (void)peripheralManager:(CBPeripheralManager *)peripheral central:(CBCentral *)central didUnsubscribeFromCharacteristic:(CBCharacteristic *)characteristic
 {
     NSLog(@"Central unsubscribed from characteristic");
+    
     [self.subscribers removeObject:central];
+
 }
 
 -(void)sendData{
@@ -170,16 +183,23 @@
 -(void)setAdvertising:(BOOL)advertising{
     _advertising = advertising;
     if (advertising) {
-        [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]] }];
+        if (self.peripheralManager.state == CBPeripheralManagerStatePoweredOn) {
+            [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]] }];
+            self.shouldStartAdvertising = NO;
+        }
+        else{
+            self.shouldStartAdvertising = YES;
+        }
     }
     else{
+        self.shouldStartAdvertising = NO;
         [self.peripheralManager stopAdvertising];
     }
 }
 
 -(void)queueDataToSend:(NSData*)data{
     [self.dataToSend addObject:data];
-    if (!self.sending && self.transferCharacteristic) [self sendData];
+    if (!self.sending && self.subscribers.count > 0) [self sendData];
 }
 
 
