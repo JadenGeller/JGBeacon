@@ -71,7 +71,6 @@
     [super viewDidLoad];
     self.sendBeacon = [[BTSendBeacon alloc]init];
     
-    [self.sendBeacon queueDataToSend: [self.textView.text dataUsingEncoding:NSUTF8StringEncoding]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -97,7 +96,7 @@
         [self.advertisingSwitch setOn:NO];
         self.sendBeacon.advertising = NO;
     }
-    
+
 }
 
 
@@ -129,7 +128,9 @@
 - (IBAction)switchChanged:(id)sender
 {
     self.sendBeacon.advertising = self.advertisingSwitch.on;
-    
+    if (self.sendBeacon.advertising) {
+        [self.sendBeacon queueDataToSend: [self.textView.text dataUsingEncoding:NSUTF8StringEncoding]];
+    }
 }
 
 

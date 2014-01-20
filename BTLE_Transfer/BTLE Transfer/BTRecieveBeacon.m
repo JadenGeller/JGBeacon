@@ -286,4 +286,8 @@
     }
 }
 
+-(void)peripheral:(CBPeripheral *)peripheral didModifyServices:(NSArray *)invalidatedServices{
+    self.data.length = 0;
+}
+
 @end

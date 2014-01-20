@@ -77,7 +77,6 @@
     
     BTLEBothViewController __block *blockself = self;
     
-    [self.sendBeacon queueDataToSend: [self.outTextView.text dataUsingEncoding:NSUTF8StringEncoding]];
     
     
     self.receiveBeacon = [[BTRecieveBeacon alloc]init];
@@ -113,6 +112,7 @@
         self.sendBeacon.advertising = NO;
     }
     
+
 }
 
 
@@ -146,7 +146,9 @@
 - (IBAction)switchChanged:(id)sender
 {
     self.sendBeacon.advertising = self.advertisingSwitch.on;
-    
+    if (self.sendBeacon.advertising) {
+        [self.sendBeacon queueDataToSend: [self.outTextView.text dataUsingEncoding:NSUTF8StringEncoding]];
+    }
 }
 
 

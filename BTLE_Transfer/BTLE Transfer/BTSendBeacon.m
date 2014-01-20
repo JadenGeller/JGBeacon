@@ -93,7 +93,7 @@
 }
 
 -(void)sendData{
-    if (self.dataToSend.count > 0) {
+    if (self.dataToSend.count > 0 || self.theData) {
         _sending = YES;
         
         if (!self.theData) {
@@ -105,15 +105,17 @@
     }
     else{
         _sending = NO;
+        NSLog(@"Done sending items");
     }
 }
 
 -(void)sendNewData{
-    if (self.dataToSend.count > 0) {
-        self.theData = self.dataToSend[0];
-        [self.dataToSend removeObjectAtIndex:0];
-        [self continueSendingData];
-    }
+    NSLog(@"Send new data");
+    self.theData = self.dataToSend[0];
+    [self.dataToSend removeObjectAtIndex:0];
+    self.sendDataIndex = 0;
+    [self continueSendingData];
+
 }
 
 - (void)continueSendingData
@@ -126,9 +128,11 @@
         
         if ([self.peripheralManager updateValue:[@"EOM" dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:self.transferCharacteristic onSubscribedCentrals:nil]) {
             // Successfully sent EOM
+            NSLog(@"Sent EOM");
+
             
             self.theData = nil;
-            [self sendNewData];
+            [self sendData];
         }
         else _sending = NO; // something went wrong sending the EOM
     }
@@ -137,13 +141,13 @@
 
 // Returns bool indicating success
 -(BOOL)sendPacket{
-    
     NSInteger amountToSend = self.theData.length - self.sendDataIndex;
     if (amountToSend > NOTIFY_MTU) amountToSend = NOTIFY_MTU;
     else if (amountToSend <= 0) return NO; // done sending, time for EOM
     
     NSData *chunk = [NSData dataWithBytes:self.theData.bytes+self.sendDataIndex length:amountToSend];
-    
+    NSLog(@"Sent packet: %@", chunk);
+
     if ([self.peripheralManager updateValue:chunk forCharacteristic:self.transferCharacteristic onSubscribedCentrals:nil]) {
         self.sendDataIndex += amountToSend;
         return YES;
@@ -175,6 +179,7 @@
     [self.dataToSend addObject:data];
     if (!self.sending && self.transferCharacteristic) [self sendData];
 }
+
 
 
 @end
