@@ -176,6 +176,7 @@
         
         // We have, so show the data,
         if (self.dataReceived) self.dataReceived(self.data);
+        self.data.length = 0;
         
         // Cancel our subscription to the characteristic
         //[peripheral setNotifyValue:NO forCharacteristic:characteristic];
@@ -183,9 +184,10 @@
         // and disconnect from the peripehral
         //[self.centralManager cancelPeripheralConnection:peripheral];
     }
-    
-    // Otherwise, just add the data on to what we already have
-    [self.data appendData:characteristic.value];
+    else{
+        // Otherwise, just add the data on to what we already have
+        [self.data appendData:characteristic.value];
+    }
     
     // Log it
     NSLog(@"Received: %@", stringFromData);
