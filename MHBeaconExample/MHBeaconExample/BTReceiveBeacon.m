@@ -13,9 +13,9 @@
 
 @interface BTReceiveBeacon () <CBCentralManagerDelegate, CBPeripheralDelegate>
 
-@property (strong, nonatomic) CBCentralManager      *centralManager;
-@property (strong, nonatomic) CBPeripheral          *discoveredPeripheral;
-@property (strong, nonatomic) NSMutableData         *data;
+@property (strong, nonatomic) CBCentralManager *centralManager;
+@property (strong, nonatomic) NSMutableArray *connectedPeripherals;
+@property (strong, nonatomic) NSMutableData *data;
 
 @property (nonatomic) BOOL shouldStartScanning;
 
@@ -35,6 +35,7 @@
         // And somewhere to store the incoming data
         _data = [[NSMutableData alloc] init];
 
+        _connectedPeripherals = [NSMutableArray array];
     }
     return self;
 }
@@ -68,13 +69,13 @@
         return;
     }
     
-    NSLog(@"Discovered %@ at %@", peripheral.name, RSSI);
+    //NSLog(@"Discovered %@ at %@", peripheral.name, RSSI);
     
     // Ok, it's in range - have we already seen it?
-    if (self.discoveredPeripheral != peripheral) {
+    if (![self.connectedPeripherals containsObject:peripheral]) {
         
         // Save a local copy of the peripheral, so CoreBluetooth doesn't get rid of it
-        self.discoveredPeripheral = peripheral;
+        [self.connectedPeripherals addObject: peripheral];
         
         // And connect
         NSLog(@"Connecting to peripheral %@", peripheral);
@@ -88,7 +89,7 @@
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
     NSLog(@"Failed to connect to %@. (%@)", peripheral, [error localizedDescription]);
-    [self cleanup];
+    //[self cleanup];
 }
 
 
@@ -99,8 +100,8 @@
     NSLog(@"Peripheral Connected");
     
     // Stop scanning
-    self.scanning = NO;
-    NSLog(@"Scanning stopped");
+    //self.scanning = NO;
+    //NSLog(@"Scanning stopped");
     
     // Clear the data that we may already have
     [self.data setLength:0];
@@ -119,7 +120,7 @@
 {
     if (error) {
         NSLog(@"Error discovering services: %@", [error localizedDescription]);
-        [self cleanup];
+        //[self cleanup];
         return;
     }
     
@@ -140,7 +141,7 @@
     // Deal with errors (if any)
     if (error) {
         NSLog(@"Error discovering characteristics: %@", [error localizedDescription]);
-        [self cleanup];
+        //[self cleanup];
         return;
     }
     
@@ -177,10 +178,10 @@
         if (self.dataReceived) self.dataReceived(self.data);
         
         // Cancel our subscription to the characteristic
-        [peripheral setNotifyValue:NO forCharacteristic:characteristic];
+        //[peripheral setNotifyValue:NO forCharacteristic:characteristic];
         
         // and disconnect from the peripehral
-        [self.centralManager cancelPeripheralConnection:peripheral];
+        //[self.centralManager cancelPeripheralConnection:peripheral];
     }
     
     // Otherwise, just add the data on to what we already have
@@ -191,7 +192,8 @@
 }
 
 
-/** The peripheral letting us know whether our subscribe/unsubscribe happened or not
+/** The peripheral letting us know whether our subscribe/
+ ribe happened or not
  */
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
 {
@@ -199,21 +201,18 @@
         NSLog(@"Error changing notification state: %@", error.localizedDescription);
     }
     
-    // Exit if it's not the transfer characteristic
-    if (![characteristic.UUID isEqual:[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID]]) {
-        return;
-    }
-    
-    // Notification has started
-    if (characteristic.isNotifying) {
-        NSLog(@"Notification began on %@", characteristic);
-    }
-    
-    // Notification has stopped
-    else {
-        // so disconnect from the peripheral
-        NSLog(@"Notification stopped on %@.  Disconnecting", characteristic);
-        [self.centralManager cancelPeripheralConnection:peripheral];
+    if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID]]) {
+        // Notification has started
+        if (characteristic.isNotifying) {
+            NSLog(@"Notification began on %@", characteristic);
+        }
+        
+        // Notification has stopped
+        else {
+            // so disconnect from the peripheral
+            NSLog(@"Notification stopped on %@.  Disconnecting", characteristic);
+            [self.centralManager cancelPeripheralConnection:peripheral];
+        }
     }
 }
 
@@ -223,10 +222,10 @@
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
     NSLog(@"Peripheral Disconnected");
-    self.discoveredPeripheral = nil;
+    [self.connectedPeripherals removeObject:peripheral];
     
     // We're disconnected, so start scanning again
-    self.scanning = YES;
+    //self.scanning = YES;
 }
 
 
@@ -234,35 +233,35 @@
  *  This cancels any subscriptions if there are any, or straight disconnects if not.
  *  (didUpdateNotificationStateForCharacteristic will cancel the connection if a subscription is involved)
  */
-- (void)cleanup
-{
-    // Don't do anything if we're not connected
-    if (!self.discoveredPeripheral.state == CBPeripheralStateConnected) {
-        return;
-    }
-    
-    // See if we are subscribed to a characteristic on the peripheral
-    if (self.discoveredPeripheral.services != nil) {
-        for (CBService *service in self.discoveredPeripheral.services) {
-            if (service.characteristics != nil) {
-                for (CBCharacteristic *characteristic in service.characteristics) {
-                    if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID]]) {
-                        if (characteristic.isNotifying) {
-                            // It is notifying, so unsubscribe
-                            [self.discoveredPeripheral setNotifyValue:NO forCharacteristic:characteristic];
-                            
-                            // And we're done.
-                            return;
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    // If we've got this far, we're connected, but we're not subscribed, so we just disconnect
-    [self.centralManager cancelPeripheralConnection:self.discoveredPeripheral];
-}
+//- (void)cleanup
+//{
+//    // Don't do anything if we're not connected
+//    if (!self.discoveredPeripheral.state == CBPeripheralStateConnected) {
+//        return;
+//    }
+//    
+//    // See if we are subscribed to a characteristic on the peripheral
+//    if (self.discoveredPeripheral.services != nil) {
+//        for (CBService *service in self.discoveredPeripheral.services) {
+//            if (service.characteristics != nil) {
+//                for (CBCharacteristic *characteristic in service.characteristics) {
+//                    if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID]]) {
+//                        if (characteristic.isNotifying) {
+//                            // It is notifying, so unsubscribe
+//                            [self.discoveredPeripheral setNotifyValue:NO forCharacteristic:characteristic];
+//                            
+//                            // And we're done.
+//                            return;
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
+//    
+//    // If we've got this far, we're connected, but we're not subscribed, so we just disconnect
+//    [self.centralManager cancelPeripheralConnection:self.discoveredPeripheral];
+//}
 
 -(void)setScanning:(BOOL)scanning{
     _scanning = scanning;

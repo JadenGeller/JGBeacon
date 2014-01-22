@@ -35,15 +35,10 @@
     if (self = [super init]) {
         // Start up the CBPeripheralManager
         _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
-    }
-    return self;
-}
-
--(NSMutableArray*)dataToSend{
-    if (!_dataToSend) {
+        _subscribers = [NSMutableArray array];
         _dataToSend = [NSMutableArray array];
     }
-    return _dataToSend;
+    return self;
 }
 
 #pragma mark - Peripheral Methods
