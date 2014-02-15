@@ -38,13 +38,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D737B3E518AF66CD0096F089 /* JGBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGBeacon.h; sourceTree = "<group>"; };
-		D737B3E618AF66CD0096F089 /* JGBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGBeacon.m; sourceTree = "<group>"; };
-		D737B3E718AF66CD0096F089 /* JGReceiveBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGReceiveBeacon.h; sourceTree = "<group>"; };
-		D737B3E818AF66CD0096F089 /* TransferService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferService.h; sourceTree = "<group>"; };
-		D737B3E918AF66CD0096F089 /* JGReceiveBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGReceiveBeacon.m; sourceTree = "<group>"; };
-		D737B3EA18AF66CD0096F089 /* JGSendBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGSendBeacon.h; sourceTree = "<group>"; };
-		D737B3EB18AF66CD0096F089 /* JGSendBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGSendBeacon.m; sourceTree = "<group>"; };
+		D737B3E518AF66CD0096F089 /* JGBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JGBeacon.h; path = JGBeaconExample/JGBeacon.h; sourceTree = "<group>"; };
+		D737B3E618AF66CD0096F089 /* JGBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JGBeacon.m; path = JGBeaconExample/JGBeacon.m; sourceTree = "<group>"; };
+		D737B3E718AF66CD0096F089 /* JGReceiveBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JGReceiveBeacon.h; path = JGBeaconExample/JGReceiveBeacon.h; sourceTree = "<group>"; };
+		D737B3E818AF66CD0096F089 /* TransferService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TransferService.h; path = JGBeaconExample/TransferService.h; sourceTree = "<group>"; };
+		D737B3E918AF66CD0096F089 /* JGReceiveBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JGReceiveBeacon.m; path = JGBeaconExample/JGReceiveBeacon.m; sourceTree = "<group>"; };
+		D737B3EA18AF66CD0096F089 /* JGSendBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JGSendBeacon.h; path = JGBeaconExample/JGSendBeacon.h; sourceTree = "<group>"; };
+		D737B3EB18AF66CD0096F089 /* JGSendBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JGSendBeacon.m; path = JGBeaconExample/JGSendBeacon.m; sourceTree = "<group>"; };
 		D7F44E0118AF65C20056C990 /* JGBeaconExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JGBeaconExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7F44E0418AF65C20056C990 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D7F44E0618AF65C20056C990 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -91,9 +91,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D737B3EF18AF681B0096F089 /* JGBeacon */ = {
+			isa = PBXGroup;
+			children = (
+				D737B3E818AF66CD0096F089 /* TransferService.h */,
+				D737B3E518AF66CD0096F089 /* JGBeacon.h */,
+				D737B3E618AF66CD0096F089 /* JGBeacon.m */,
+				D737B3E718AF66CD0096F089 /* JGReceiveBeacon.h */,
+				D737B3E918AF66CD0096F089 /* JGReceiveBeacon.m */,
+				D737B3EA18AF66CD0096F089 /* JGSendBeacon.h */,
+				D737B3EB18AF66CD0096F089 /* JGSendBeacon.m */,
+			);
+			name = JGBeacon;
+			sourceTree = "<group>";
+		};
 		D7F44DF818AF65C10056C990 = {
 			isa = PBXGroup;
 			children = (
+				D737B3EF18AF681B0096F089 /* JGBeacon */,
 				D7F44E0A18AF65C20056C990 /* JGBeaconExample */,
 				D7F44E2C18AF65C20056C990 /* JGBeaconExampleTests */,
 				D7F44E0318AF65C20056C990 /* Frameworks */,
@@ -130,13 +145,6 @@
 				D7F44E1918AF65C20056C990 /* Main_iPad.storyboard */,
 				D7F44E1C18AF65C20056C990 /* JGViewController.h */,
 				D7F44E1D18AF65C20056C990 /* JGViewController.m */,
-				D737B3E518AF66CD0096F089 /* JGBeacon.h */,
-				D737B3E618AF66CD0096F089 /* JGBeacon.m */,
-				D737B3E718AF66CD0096F089 /* JGReceiveBeacon.h */,
-				D737B3E818AF66CD0096F089 /* TransferService.h */,
-				D737B3E918AF66CD0096F089 /* JGReceiveBeacon.m */,
-				D737B3EA18AF66CD0096F089 /* JGSendBeacon.h */,
-				D737B3EB18AF66CD0096F089 /* JGSendBeacon.m */,
 				D7F44E1F18AF65C20056C990 /* Images.xcassets */,
 				D7F44E0B18AF65C20056C990 /* Supporting Files */,
 			);

@@ -48,7 +48,11 @@
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central
 {
     if (central.state == CBCentralManagerStatePoweredOn) {
-        if (self.shouldStartScanning) self.scanning = YES;
+        NSLog(@"Central manager powered on");
+        if (self.shouldStartScanning){
+            NSLog(@"Started scanning");
+            self.scanning = YES;
+        }
     }
     
 }
@@ -60,19 +64,20 @@
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
     // Reject any where the value is above reasonable range
-    if (RSSI.integerValue > -15) {
-        return;
-    }
-    
+//    if (RSSI.integerValue > -15) {
+//        return;
+//    }
+//    
     // Reject if the signal strength is too low to be close enough (Close is around -22dB)
-    if (RSSI.integerValue < -35) {
-        return;
-    }
-    
-    //NSLog(@"Discovered %@ at %@", peripheral.name, RSSI);
+//    if (RSSI.integerValue < -35) {
+//        return;
+//    }
+
     
     // Ok, it's in range - have we already seen it?
     if (![self.connectedPeripherals containsObject:peripheral]) {
+        
+        NSLog(@"Discovered %@ at %@", peripheral.name, RSSI);
         
         // Save a local copy of the peripheral, so CoreBluetooth doesn't get rid of it
         [self.connectedPeripherals addObject: peripheral];
@@ -98,11 +103,7 @@
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
 {
     NSLog(@"Peripheral Connected");
-    
-    // Stop scanning
-    //self.scanning = NO;
-    //NSLog(@"Scanning stopped");
-    
+        
     // Clear the data that we may already have
     [self.data setLength:0];
     
@@ -128,6 +129,7 @@
     
     // Loop through the newly filled peripheral.services array, just in case there's more than one.
     for (CBService *service in peripheral.services) {
+        NSLog(@"Discovered servie %@",service);
         [peripheral discoverCharacteristics:@[[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID]] forService:service];
     }
 }
@@ -148,8 +150,11 @@
     // Again, we loop through the array, just in case.
     for (CBCharacteristic *characteristic in service.characteristics) {
         
+        NSLog(@"Discovered characteristic %@", characteristic);
         // And check if it's the right one
         if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID]]) {
+            
+            NSLog(@"Correct characteristic");
             
             // If it is, subscribe to it
             [peripheral setNotifyValue:YES forCharacteristic:characteristic];
