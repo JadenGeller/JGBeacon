@@ -1,14 +1,14 @@
 //
-//  MHAppDelegate.m
-//  MHBeaconExample
+//  JGAppDelegate.m
+//  JGBeaconExample
 //
-//  Created by Jaden Geller on 1/20/14.
-//
+//  Created by Jaden Geller on 2/15/14.
+//  Copyright (c) 2014 Jaden Geller. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "JGAppDelegate.h"
 
-@implementation AppDelegate
+@implementation JGAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

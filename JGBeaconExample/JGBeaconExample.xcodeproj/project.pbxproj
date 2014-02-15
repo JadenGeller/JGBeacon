@@ -7,168 +7,167 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D721608F188DD931003FBAE2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D721608E188DD930003FBAE2 /* Foundation.framework */; };
-		D7216091188DD931003FBAE2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7216090188DD931003FBAE2 /* CoreGraphics.framework */; };
-		D7216093188DD931003FBAE2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7216092188DD931003FBAE2 /* UIKit.framework */; };
-		D7216099188DD931003FBAE2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D7216097188DD931003FBAE2 /* InfoPlist.strings */; };
-		D721609B188DD931003FBAE2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D721609A188DD931003FBAE2 /* main.m */; };
-		D721609F188DD931003FBAE2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D721609E188DD931003FBAE2 /* AppDelegate.m */; };
-		D72160A2188DD931003FBAE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D72160A0188DD931003FBAE2 /* Main.storyboard */; };
-		D72160A5188DD931003FBAE2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D72160A4188DD931003FBAE2 /* ViewController.m */; };
-		D72160A7188DD931003FBAE2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D72160A6188DD931003FBAE2 /* Images.xcassets */; };
-		D72160AE188DD931003FBAE2 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D72160AD188DD931003FBAE2 /* XCTest.framework */; };
-		D72160AF188DD931003FBAE2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D721608E188DD930003FBAE2 /* Foundation.framework */; };
-		D72160B0188DD931003FBAE2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7216092188DD931003FBAE2 /* UIKit.framework */; };
-		D72160B8188DD931003FBAE2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D72160B6188DD931003FBAE2 /* InfoPlist.strings */; };
-		D72160BA188DD931003FBAE2 /* MHBeaconExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D72160B9188DD931003FBAE2 /* MHBeaconExampleTests.m */; };
-		D72160C7188DDD0B003FBAE2 /* JGReceiveBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = D72160C4188DDD0B003FBAE2 /* JGReceiveBeacon.m */; };
-		D72160C8188DDD0B003FBAE2 /* JGSendBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = D72160C6188DDD0B003FBAE2 /* JGSendBeacon.m */; };
-		D72160CE188DE335003FBAE2 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D72160CD188DE335003FBAE2 /* CoreBluetooth.framework */; };
-		D7B7316F189DFE760002300C /* JGBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = D7B7316E189DFE760002300C /* JGBeacon.m */; };
+		D737B3EC18AF66CD0096F089 /* JGBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = D737B3E618AF66CD0096F089 /* JGBeacon.m */; };
+		D737B3ED18AF66CD0096F089 /* JGReceiveBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = D737B3E918AF66CD0096F089 /* JGReceiveBeacon.m */; };
+		D737B3EE18AF66CD0096F089 /* JGSendBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = D737B3EB18AF66CD0096F089 /* JGSendBeacon.m */; };
+		D7F44E0518AF65C20056C990 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7F44E0418AF65C20056C990 /* Foundation.framework */; };
+		D7F44E0718AF65C20056C990 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7F44E0618AF65C20056C990 /* CoreGraphics.framework */; };
+		D7F44E0918AF65C20056C990 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7F44E0818AF65C20056C990 /* UIKit.framework */; };
+		D7F44E0F18AF65C20056C990 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D7F44E0D18AF65C20056C990 /* InfoPlist.strings */; };
+		D7F44E1118AF65C20056C990 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F44E1018AF65C20056C990 /* main.m */; };
+		D7F44E1518AF65C20056C990 /* JGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F44E1418AF65C20056C990 /* JGAppDelegate.m */; };
+		D7F44E1818AF65C20056C990 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7F44E1618AF65C20056C990 /* Main_iPhone.storyboard */; };
+		D7F44E1B18AF65C20056C990 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7F44E1918AF65C20056C990 /* Main_iPad.storyboard */; };
+		D7F44E1E18AF65C20056C990 /* JGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F44E1D18AF65C20056C990 /* JGViewController.m */; };
+		D7F44E2018AF65C20056C990 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7F44E1F18AF65C20056C990 /* Images.xcassets */; };
+		D7F44E2718AF65C20056C990 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7F44E2618AF65C20056C990 /* XCTest.framework */; };
+		D7F44E2818AF65C20056C990 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7F44E0418AF65C20056C990 /* Foundation.framework */; };
+		D7F44E2918AF65C20056C990 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7F44E0818AF65C20056C990 /* UIKit.framework */; };
+		D7F44E3118AF65C20056C990 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D7F44E2F18AF65C20056C990 /* InfoPlist.strings */; };
+		D7F44E3318AF65C20056C990 /* JGBeaconExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F44E3218AF65C20056C990 /* JGBeaconExampleTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		D72160B1188DD931003FBAE2 /* PBXContainerItemProxy */ = {
+		D7F44E2A18AF65C20056C990 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = D7216083188DD930003FBAE2 /* Project object */;
+			containerPortal = D7F44DF918AF65C10056C990 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = D721608A188DD930003FBAE2;
-			remoteInfo = MHBeaconExample;
+			remoteGlobalIDString = D7F44E0018AF65C20056C990;
+			remoteInfo = JGBeaconExample;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D721608B188DD930003FBAE2 /* MHBeaconExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MHBeaconExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D721608E188DD930003FBAE2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		D7216090188DD931003FBAE2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		D7216092188DD931003FBAE2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		D7216096188DD931003FBAE2 /* MHBeaconExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MHBeaconExample-Info.plist"; sourceTree = "<group>"; };
-		D7216098188DD931003FBAE2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D721609A188DD931003FBAE2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		D721609C188DD931003FBAE2 /* MHBeaconExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MHBeaconExample-Prefix.pch"; sourceTree = "<group>"; };
-		D721609D188DD931003FBAE2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		D721609E188DD931003FBAE2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		D72160A1188DD931003FBAE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		D72160A3188DD931003FBAE2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		D72160A4188DD931003FBAE2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		D72160A6188DD931003FBAE2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		D72160AC188DD931003FBAE2 /* MHBeaconExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MHBeaconExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D72160AD188DD931003FBAE2 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		D72160B5188DD931003FBAE2 /* MHBeaconExampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MHBeaconExampleTests-Info.plist"; sourceTree = "<group>"; };
-		D72160B7188DD931003FBAE2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D72160B9188DD931003FBAE2 /* MHBeaconExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MHBeaconExampleTests.m; sourceTree = "<group>"; };
-		D72160C3188DDD0B003FBAE2 /* JGReceiveBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGReceiveBeacon.h; sourceTree = "<group>"; };
-		D72160C4188DDD0B003FBAE2 /* JGReceiveBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGReceiveBeacon.m; sourceTree = "<group>"; };
-		D72160C5188DDD0B003FBAE2 /* JGSendBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGSendBeacon.h; sourceTree = "<group>"; };
-		D72160C6188DDD0B003FBAE2 /* JGSendBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGSendBeacon.m; sourceTree = "<group>"; };
-		D72160CC188DE159003FBAE2 /* TransferService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransferService.h; sourceTree = "<group>"; };
-		D72160CD188DE335003FBAE2 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
-		D7B7316D189DFE760002300C /* JGBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGBeacon.h; sourceTree = "<group>"; };
-		D7B7316E189DFE760002300C /* JGBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGBeacon.m; sourceTree = "<group>"; };
+		D737B3E518AF66CD0096F089 /* JGBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGBeacon.h; sourceTree = "<group>"; };
+		D737B3E618AF66CD0096F089 /* JGBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGBeacon.m; sourceTree = "<group>"; };
+		D737B3E718AF66CD0096F089 /* JGReceiveBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGReceiveBeacon.h; sourceTree = "<group>"; };
+		D737B3E818AF66CD0096F089 /* TransferService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferService.h; sourceTree = "<group>"; };
+		D737B3E918AF66CD0096F089 /* JGReceiveBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGReceiveBeacon.m; sourceTree = "<group>"; };
+		D737B3EA18AF66CD0096F089 /* JGSendBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGSendBeacon.h; sourceTree = "<group>"; };
+		D737B3EB18AF66CD0096F089 /* JGSendBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGSendBeacon.m; sourceTree = "<group>"; };
+		D7F44E0118AF65C20056C990 /* JGBeaconExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JGBeaconExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7F44E0418AF65C20056C990 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D7F44E0618AF65C20056C990 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D7F44E0818AF65C20056C990 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D7F44E0C18AF65C20056C990 /* JGBeaconExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JGBeaconExample-Info.plist"; sourceTree = "<group>"; };
+		D7F44E0E18AF65C20056C990 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D7F44E1018AF65C20056C990 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D7F44E1218AF65C20056C990 /* JGBeaconExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JGBeaconExample-Prefix.pch"; sourceTree = "<group>"; };
+		D7F44E1318AF65C20056C990 /* JGAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JGAppDelegate.h; sourceTree = "<group>"; };
+		D7F44E1418AF65C20056C990 /* JGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JGAppDelegate.m; sourceTree = "<group>"; };
+		D7F44E1718AF65C20056C990 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		D7F44E1A18AF65C20056C990 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		D7F44E1C18AF65C20056C990 /* JGViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JGViewController.h; sourceTree = "<group>"; };
+		D7F44E1D18AF65C20056C990 /* JGViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JGViewController.m; sourceTree = "<group>"; };
+		D7F44E1F18AF65C20056C990 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D7F44E2518AF65C20056C990 /* JGBeaconExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JGBeaconExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7F44E2618AF65C20056C990 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		D7F44E2E18AF65C20056C990 /* JGBeaconExampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JGBeaconExampleTests-Info.plist"; sourceTree = "<group>"; };
+		D7F44E3018AF65C20056C990 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D7F44E3218AF65C20056C990 /* JGBeaconExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JGBeaconExampleTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		D7216088188DD930003FBAE2 /* Frameworks */ = {
+		D7F44DFE18AF65C20056C990 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D72160CE188DE335003FBAE2 /* CoreBluetooth.framework in Frameworks */,
-				D7216091188DD931003FBAE2 /* CoreGraphics.framework in Frameworks */,
-				D7216093188DD931003FBAE2 /* UIKit.framework in Frameworks */,
-				D721608F188DD931003FBAE2 /* Foundation.framework in Frameworks */,
+				D7F44E0718AF65C20056C990 /* CoreGraphics.framework in Frameworks */,
+				D7F44E0918AF65C20056C990 /* UIKit.framework in Frameworks */,
+				D7F44E0518AF65C20056C990 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D72160A9188DD931003FBAE2 /* Frameworks */ = {
+		D7F44E2218AF65C20056C990 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D72160AE188DD931003FBAE2 /* XCTest.framework in Frameworks */,
-				D72160B0188DD931003FBAE2 /* UIKit.framework in Frameworks */,
-				D72160AF188DD931003FBAE2 /* Foundation.framework in Frameworks */,
+				D7F44E2718AF65C20056C990 /* XCTest.framework in Frameworks */,
+				D7F44E2918AF65C20056C990 /* UIKit.framework in Frameworks */,
+				D7F44E2818AF65C20056C990 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D7216082188DD930003FBAE2 = {
+		D7F44DF818AF65C10056C990 = {
 			isa = PBXGroup;
 			children = (
-				D7216094188DD931003FBAE2 /* MHBeaconExample */,
-				D72160B3188DD931003FBAE2 /* MHBeaconExampleTests */,
-				D721608D188DD930003FBAE2 /* Frameworks */,
-				D721608C188DD930003FBAE2 /* Products */,
+				D7F44E0A18AF65C20056C990 /* JGBeaconExample */,
+				D7F44E2C18AF65C20056C990 /* JGBeaconExampleTests */,
+				D7F44E0318AF65C20056C990 /* Frameworks */,
+				D7F44E0218AF65C20056C990 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		D721608C188DD930003FBAE2 /* Products */ = {
+		D7F44E0218AF65C20056C990 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D721608B188DD930003FBAE2 /* MHBeaconExample.app */,
-				D72160AC188DD931003FBAE2 /* MHBeaconExampleTests.xctest */,
+				D7F44E0118AF65C20056C990 /* JGBeaconExample.app */,
+				D7F44E2518AF65C20056C990 /* JGBeaconExampleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D721608D188DD930003FBAE2 /* Frameworks */ = {
+		D7F44E0318AF65C20056C990 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D72160CD188DE335003FBAE2 /* CoreBluetooth.framework */,
-				D721608E188DD930003FBAE2 /* Foundation.framework */,
-				D7216090188DD931003FBAE2 /* CoreGraphics.framework */,
-				D7216092188DD931003FBAE2 /* UIKit.framework */,
-				D72160AD188DD931003FBAE2 /* XCTest.framework */,
+				D7F44E0418AF65C20056C990 /* Foundation.framework */,
+				D7F44E0618AF65C20056C990 /* CoreGraphics.framework */,
+				D7F44E0818AF65C20056C990 /* UIKit.framework */,
+				D7F44E2618AF65C20056C990 /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D7216094188DD931003FBAE2 /* MHBeaconExample */ = {
+		D7F44E0A18AF65C20056C990 /* JGBeaconExample */ = {
 			isa = PBXGroup;
 			children = (
-				D721609D188DD931003FBAE2 /* AppDelegate.h */,
-				D721609E188DD931003FBAE2 /* AppDelegate.m */,
-				D72160A0188DD931003FBAE2 /* Main.storyboard */,
-				D72160A3188DD931003FBAE2 /* ViewController.h */,
-				D72160A4188DD931003FBAE2 /* ViewController.m */,
-				D7B7316D189DFE760002300C /* JGBeacon.h */,
-				D7B7316E189DFE760002300C /* JGBeacon.m */,
-				D72160C3188DDD0B003FBAE2 /* JGReceiveBeacon.h */,
-				D72160C4188DDD0B003FBAE2 /* JGReceiveBeacon.m */,
-				D72160C5188DDD0B003FBAE2 /* JGSendBeacon.h */,
-				D72160C6188DDD0B003FBAE2 /* JGSendBeacon.m */,
-				D72160CC188DE159003FBAE2 /* TransferService.h */,
-				D72160A6188DD931003FBAE2 /* Images.xcassets */,
-				D7216095188DD931003FBAE2 /* Supporting Files */,
+				D7F44E1318AF65C20056C990 /* JGAppDelegate.h */,
+				D7F44E1418AF65C20056C990 /* JGAppDelegate.m */,
+				D7F44E1618AF65C20056C990 /* Main_iPhone.storyboard */,
+				D7F44E1918AF65C20056C990 /* Main_iPad.storyboard */,
+				D7F44E1C18AF65C20056C990 /* JGViewController.h */,
+				D7F44E1D18AF65C20056C990 /* JGViewController.m */,
+				D737B3E518AF66CD0096F089 /* JGBeacon.h */,
+				D737B3E618AF66CD0096F089 /* JGBeacon.m */,
+				D737B3E718AF66CD0096F089 /* JGReceiveBeacon.h */,
+				D737B3E818AF66CD0096F089 /* TransferService.h */,
+				D737B3E918AF66CD0096F089 /* JGReceiveBeacon.m */,
+				D737B3EA18AF66CD0096F089 /* JGSendBeacon.h */,
+				D737B3EB18AF66CD0096F089 /* JGSendBeacon.m */,
+				D7F44E1F18AF65C20056C990 /* Images.xcassets */,
+				D7F44E0B18AF65C20056C990 /* Supporting Files */,
 			);
-			path = MHBeaconExample;
+			path = JGBeaconExample;
 			sourceTree = "<group>";
 		};
-		D7216095188DD931003FBAE2 /* Supporting Files */ = {
+		D7F44E0B18AF65C20056C990 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D7216096188DD931003FBAE2 /* MHBeaconExample-Info.plist */,
-				D7216097188DD931003FBAE2 /* InfoPlist.strings */,
-				D721609A188DD931003FBAE2 /* main.m */,
-				D721609C188DD931003FBAE2 /* MHBeaconExample-Prefix.pch */,
+				D7F44E0C18AF65C20056C990 /* JGBeaconExample-Info.plist */,
+				D7F44E0D18AF65C20056C990 /* InfoPlist.strings */,
+				D7F44E1018AF65C20056C990 /* main.m */,
+				D7F44E1218AF65C20056C990 /* JGBeaconExample-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		D72160B3188DD931003FBAE2 /* MHBeaconExampleTests */ = {
+		D7F44E2C18AF65C20056C990 /* JGBeaconExampleTests */ = {
 			isa = PBXGroup;
 			children = (
-				D72160B9188DD931003FBAE2 /* MHBeaconExampleTests.m */,
-				D72160B4188DD931003FBAE2 /* Supporting Files */,
+				D7F44E3218AF65C20056C990 /* JGBeaconExampleTests.m */,
+				D7F44E2D18AF65C20056C990 /* Supporting Files */,
 			);
-			path = MHBeaconExampleTests;
+			path = JGBeaconExampleTests;
 			sourceTree = "<group>";
 		};
-		D72160B4188DD931003FBAE2 /* Supporting Files */ = {
+		D7F44E2D18AF65C20056C990 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D72160B5188DD931003FBAE2 /* MHBeaconExampleTests-Info.plist */,
-				D72160B6188DD931003FBAE2 /* InfoPlist.strings */,
+				D7F44E2E18AF65C20056C990 /* JGBeaconExampleTests-Info.plist */,
+				D7F44E2F18AF65C20056C990 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -176,59 +175,57 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D721608A188DD930003FBAE2 /* MHBeaconExample */ = {
+		D7F44E0018AF65C20056C990 /* JGBeaconExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D72160BD188DD931003FBAE2 /* Build configuration list for PBXNativeTarget "MHBeaconExample" */;
+			buildConfigurationList = D7F44E3618AF65C20056C990 /* Build configuration list for PBXNativeTarget "JGBeaconExample" */;
 			buildPhases = (
-				D7216087188DD930003FBAE2 /* Sources */,
-				D7216088188DD930003FBAE2 /* Frameworks */,
-				D7216089188DD930003FBAE2 /* Resources */,
+				D7F44DFD18AF65C20056C990 /* Sources */,
+				D7F44DFE18AF65C20056C990 /* Frameworks */,
+				D7F44DFF18AF65C20056C990 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = MHBeaconExample;
-			productName = MHBeaconExample;
-			productReference = D721608B188DD930003FBAE2 /* MHBeaconExample.app */;
+			name = JGBeaconExample;
+			productName = JGBeaconExample;
+			productReference = D7F44E0118AF65C20056C990 /* JGBeaconExample.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D72160AB188DD931003FBAE2 /* MHBeaconExampleTests */ = {
+		D7F44E2418AF65C20056C990 /* JGBeaconExampleTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D72160C0188DD931003FBAE2 /* Build configuration list for PBXNativeTarget "MHBeaconExampleTests" */;
+			buildConfigurationList = D7F44E3918AF65C20056C990 /* Build configuration list for PBXNativeTarget "JGBeaconExampleTests" */;
 			buildPhases = (
-				D72160A8188DD931003FBAE2 /* Sources */,
-				D72160A9188DD931003FBAE2 /* Frameworks */,
-				D72160AA188DD931003FBAE2 /* Resources */,
+				D7F44E2118AF65C20056C990 /* Sources */,
+				D7F44E2218AF65C20056C990 /* Frameworks */,
+				D7F44E2318AF65C20056C990 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				D72160B2188DD931003FBAE2 /* PBXTargetDependency */,
+				D7F44E2B18AF65C20056C990 /* PBXTargetDependency */,
 			);
-			name = MHBeaconExampleTests;
-			productName = MHBeaconExampleTests;
-			productReference = D72160AC188DD931003FBAE2 /* MHBeaconExampleTests.xctest */;
+			name = JGBeaconExampleTests;
+			productName = JGBeaconExampleTests;
+			productReference = D7F44E2518AF65C20056C990 /* JGBeaconExampleTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		D7216083188DD930003FBAE2 /* Project object */ = {
+		D7F44DF918AF65C10056C990 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = MH;
+				CLASSPREFIX = JG;
 				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Jaden Geller";
 				TargetAttributes = {
-					D721608A188DD930003FBAE2 = {
-						DevelopmentTeam = PLYLXBYCEQ;
-					};
-					D72160AB188DD931003FBAE2 = {
-						TestTargetID = D721608A188DD930003FBAE2;
+					D7F44E2418AF65C20056C990 = {
+						TestTargetID = D7F44E0018AF65C20056C990;
 					};
 				};
 			};
-			buildConfigurationList = D7216086188DD930003FBAE2 /* Build configuration list for PBXProject "MHBeaconExample" */;
+			buildConfigurationList = D7F44DFC18AF65C10056C990 /* Build configuration list for PBXProject "JGBeaconExample" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -236,91 +233,100 @@
 				en,
 				Base,
 			);
-			mainGroup = D7216082188DD930003FBAE2;
-			productRefGroup = D721608C188DD930003FBAE2 /* Products */;
+			mainGroup = D7F44DF818AF65C10056C990;
+			productRefGroup = D7F44E0218AF65C20056C990 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D721608A188DD930003FBAE2 /* MHBeaconExample */,
-				D72160AB188DD931003FBAE2 /* MHBeaconExampleTests */,
+				D7F44E0018AF65C20056C990 /* JGBeaconExample */,
+				D7F44E2418AF65C20056C990 /* JGBeaconExampleTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		D7216089188DD930003FBAE2 /* Resources */ = {
+		D7F44DFF18AF65C20056C990 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D72160A7188DD931003FBAE2 /* Images.xcassets in Resources */,
-				D7216099188DD931003FBAE2 /* InfoPlist.strings in Resources */,
-				D72160A2188DD931003FBAE2 /* Main.storyboard in Resources */,
+				D7F44E1B18AF65C20056C990 /* Main_iPad.storyboard in Resources */,
+				D7F44E2018AF65C20056C990 /* Images.xcassets in Resources */,
+				D7F44E1818AF65C20056C990 /* Main_iPhone.storyboard in Resources */,
+				D7F44E0F18AF65C20056C990 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D72160AA188DD931003FBAE2 /* Resources */ = {
+		D7F44E2318AF65C20056C990 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D72160B8188DD931003FBAE2 /* InfoPlist.strings in Resources */,
+				D7F44E3118AF65C20056C990 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		D7216087188DD930003FBAE2 /* Sources */ = {
+		D7F44DFD18AF65C20056C990 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D721609B188DD931003FBAE2 /* main.m in Sources */,
-				D72160C7188DDD0B003FBAE2 /* JGReceiveBeacon.m in Sources */,
-				D72160A5188DD931003FBAE2 /* ViewController.m in Sources */,
-				D72160C8188DDD0B003FBAE2 /* JGSendBeacon.m in Sources */,
-				D7B7316F189DFE760002300C /* JGBeacon.m in Sources */,
-				D721609F188DD931003FBAE2 /* AppDelegate.m in Sources */,
+				D7F44E1118AF65C20056C990 /* main.m in Sources */,
+				D737B3ED18AF66CD0096F089 /* JGReceiveBeacon.m in Sources */,
+				D7F44E1E18AF65C20056C990 /* JGViewController.m in Sources */,
+				D737B3EC18AF66CD0096F089 /* JGBeacon.m in Sources */,
+				D737B3EE18AF66CD0096F089 /* JGSendBeacon.m in Sources */,
+				D7F44E1518AF65C20056C990 /* JGAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D72160A8188DD931003FBAE2 /* Sources */ = {
+		D7F44E2118AF65C20056C990 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D72160BA188DD931003FBAE2 /* MHBeaconExampleTests.m in Sources */,
+				D7F44E3318AF65C20056C990 /* JGBeaconExampleTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		D72160B2188DD931003FBAE2 /* PBXTargetDependency */ = {
+		D7F44E2B18AF65C20056C990 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D721608A188DD930003FBAE2 /* MHBeaconExample */;
-			targetProxy = D72160B1188DD931003FBAE2 /* PBXContainerItemProxy */;
+			target = D7F44E0018AF65C20056C990 /* JGBeaconExample */;
+			targetProxy = D7F44E2A18AF65C20056C990 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		D7216097188DD931003FBAE2 /* InfoPlist.strings */ = {
+		D7F44E0D18AF65C20056C990 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				D7216098188DD931003FBAE2 /* en */,
+				D7F44E0E18AF65C20056C990 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		D72160A0188DD931003FBAE2 /* Main.storyboard */ = {
+		D7F44E1618AF65C20056C990 /* Main_iPhone.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				D72160A1188DD931003FBAE2 /* Base */,
+				D7F44E1718AF65C20056C990 /* Base */,
 			);
-			name = Main.storyboard;
+			name = Main_iPhone.storyboard;
 			sourceTree = "<group>";
 		};
-		D72160B6188DD931003FBAE2 /* InfoPlist.strings */ = {
+		D7F44E1918AF65C20056C990 /* Main_iPad.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				D72160B7188DD931003FBAE2 /* en */,
+				D7F44E1A18AF65C20056C990 /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		D7F44E2F18AF65C20056C990 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D7F44E3018AF65C20056C990 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -328,7 +334,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		D72160BB188DD931003FBAE2 /* Debug */ = {
+		D7F44E3418AF65C20056C990 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -364,10 +370,11 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		D72160BC188DD931003FBAE2 /* Release */ = {
+		D7F44E3518AF65C20056C990 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -396,78 +403,73 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		D72160BE188DD931003FBAE2 /* Debug */ = {
+		D7F44E3718AF65C20056C990 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MHBeaconExample/MHBeaconExample-Prefix.pch";
-				INFOPLIST_FILE = "MHBeaconExample/MHBeaconExample-Info.plist";
+				GCC_PREFIX_HEADER = "JGBeaconExample/JGBeaconExample-Prefix.pch";
+				INFOPLIST_FILE = "JGBeaconExample/JGBeaconExample-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
-		D72160BF188DD931003FBAE2 /* Release */ = {
+		D7F44E3818AF65C20056C990 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MHBeaconExample/MHBeaconExample-Prefix.pch";
-				INFOPLIST_FILE = "MHBeaconExample/MHBeaconExample-Info.plist";
+				GCC_PREFIX_HEADER = "JGBeaconExample/JGBeaconExample-Prefix.pch";
+				INFOPLIST_FILE = "JGBeaconExample/JGBeaconExample-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
 		};
-		D72160C1188DD931003FBAE2 /* Debug */ = {
+		D7F44E3A18AF65C20056C990 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MHBeaconExample.app/MHBeaconExample";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/JGBeaconExample.app/JGBeaconExample";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MHBeaconExample/MHBeaconExample-Prefix.pch";
+				GCC_PREFIX_HEADER = "JGBeaconExample/JGBeaconExample-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "MHBeaconExampleTests/MHBeaconExampleTests-Info.plist";
+				INFOPLIST_FILE = "JGBeaconExampleTests/JGBeaconExampleTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
 		};
-		D72160C2188DD931003FBAE2 /* Release */ = {
+		D7F44E3B18AF65C20056C990 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MHBeaconExample.app/MHBeaconExample";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/JGBeaconExample.app/JGBeaconExample";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MHBeaconExample/MHBeaconExample-Prefix.pch";
-				INFOPLIST_FILE = "MHBeaconExampleTests/MHBeaconExampleTests-Info.plist";
+				GCC_PREFIX_HEADER = "JGBeaconExample/JGBeaconExample-Prefix.pch";
+				INFOPLIST_FILE = "JGBeaconExampleTests/JGBeaconExampleTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -477,34 +479,34 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D7216086188DD930003FBAE2 /* Build configuration list for PBXProject "MHBeaconExample" */ = {
+		D7F44DFC18AF65C10056C990 /* Build configuration list for PBXProject "JGBeaconExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D72160BB188DD931003FBAE2 /* Debug */,
-				D72160BC188DD931003FBAE2 /* Release */,
+				D7F44E3418AF65C20056C990 /* Debug */,
+				D7F44E3518AF65C20056C990 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D72160BD188DD931003FBAE2 /* Build configuration list for PBXNativeTarget "MHBeaconExample" */ = {
+		D7F44E3618AF65C20056C990 /* Build configuration list for PBXNativeTarget "JGBeaconExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D72160BE188DD931003FBAE2 /* Debug */,
-				D72160BF188DD931003FBAE2 /* Release */,
+				D7F44E3718AF65C20056C990 /* Debug */,
+				D7F44E3818AF65C20056C990 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D72160C0188DD931003FBAE2 /* Build configuration list for PBXNativeTarget "MHBeaconExampleTests" */ = {
+		D7F44E3918AF65C20056C990 /* Build configuration list for PBXNativeTarget "JGBeaconExampleTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D72160C1188DD931003FBAE2 /* Debug */,
-				D72160C2188DD931003FBAE2 /* Release */,
+				D7F44E3A18AF65C20056C990 /* Debug */,
+				D7F44E3B18AF65C20056C990 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = D7216083188DD930003FBAE2 /* Project object */;
+	rootObject = D7F44DF918AF65C10056C990 /* Project object */;
 }

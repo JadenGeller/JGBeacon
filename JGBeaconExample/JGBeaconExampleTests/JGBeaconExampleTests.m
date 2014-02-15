@@ -1,18 +1,18 @@
 //
-//  MHBeaconExampleTests.m
-//  MHBeaconExampleTests
+//  JGBeaconExampleTests.m
+//  JGBeaconExampleTests
 //
-//  Created by Jaden Geller on 1/20/14.
-//
+//  Created by Jaden Geller on 2/15/14.
+//  Copyright (c) 2014 Jaden Geller. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
 
-@interface MHBeaconExampleTests : XCTestCase
+@interface JGBeaconExampleTests : XCTestCase
 
 @end
 
-@implementation MHBeaconExampleTests
+@implementation JGBeaconExampleTests
 
 - (void)setUp
 {

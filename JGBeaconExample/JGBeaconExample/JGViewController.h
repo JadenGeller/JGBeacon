@@ -1,15 +1,15 @@
 //
-//  ViewController.h
+//  JGViewController.h
 //  JGBeaconExample
 //
-//  Created by Jaden Geller on 1/20/14.
-//
+//  Created by Jaden Geller on 2/15/14.
+//  Copyright (c) 2014 Jaden Geller. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "JGBeacon.h"
 
-@interface ViewController : UIViewController <JGBeaconDelegate>
+@interface JGViewController : UIViewController <JGBeaconDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomSpacing;

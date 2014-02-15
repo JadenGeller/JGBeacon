@@ -1,20 +1,20 @@
 //
-//  ViewController.m
+//  JGViewController.m
 //  JGBeaconExample
 //
-//  Created by Jaden Geller on 1/20/14.
-//
+//  Created by Jaden Geller on 2/15/14.
+//  Copyright (c) 2014 Jaden Geller. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "JGViewController.h"
 
-@interface ViewController ()
+@interface JGViewController ()
 
 @property (nonatomic) JGBeacon *beacon;
 
 @end
 
-@implementation ViewController
+@implementation JGViewController
 
 - (void)viewDidLoad
 {
@@ -23,15 +23,22 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-
+    
     self.beacon = [JGBeacon beacon];
     self.beacon.delegate = self;
     self.beacon.running = JGBeaconSendingAndReceiving;
- 
+
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 -(void)receivedData:(NSData *)data{
     self.textView.text = [NSString stringWithFormat:@"%@\n%@",self.textView.text,[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]];
+
 }
 
 -(void)connectedToBeacon:(NSUUID *)identifier{
@@ -42,11 +49,6 @@
     
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 - (IBAction)sendPress:(id)sender {
     [self.beacon queueDataToSend:[self.textField.text dataUsingEncoding:NSUTF8StringEncoding]];

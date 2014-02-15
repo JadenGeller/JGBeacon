@@ -1,18 +1,18 @@
 //
 //  main.m
-//  MHBeaconExample
+//  JGBeaconExample
 //
-//  Created by Jaden Geller on 1/20/14.
-//
+//  Created by Jaden Geller on 2/15/14.
+//  Copyright (c) 2014 Jaden Geller. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-#import "AppDelegate.h"
+#import "JGAppDelegate.h"
 
 int main(int argc, char * argv[])
 {
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([JGAppDelegate class]));
     }
 }
