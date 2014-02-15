@@ -103,7 +103,7 @@
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
 {
     NSLog(@"Peripheral Connected");
-        
+         
     // Clear the data that we may already have
     [self.data setLength:0];
     
