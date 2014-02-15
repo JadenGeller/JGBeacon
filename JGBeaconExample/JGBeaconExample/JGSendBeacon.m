@@ -156,7 +156,7 @@
     else if (amountToSend <= 0) return NO; // done sending, time for EOM
     
     NSData *chunk = [NSData dataWithBytes:self.theData.bytes+self.sendDataIndex length:amountToSend];
-    //NSLog(@"Sent packet: %@", chunk);
+    NSLog(@"Sent packet: %@", chunk);
 
     if ([self.peripheralManager updateValue:chunk forCharacteristic:self.transferCharacteristic onSubscribedCentrals:nil]) {
         self.sendDataIndex += amountToSend;
@@ -192,12 +192,9 @@
     }
 }
 
--(void)enqueueDataToSend:(NSData*)data{
-    if (data) {
-        [self.dataToSend addObject:data];
-        if (!self.sending && self.subscribers.count > 0) [self sendData];
-    }
-    else NSLog(@"Data cannot be nil");
+-(void)queueDataToSend:(NSData*)data{
+    [self.dataToSend addObject:data];
+    if (!self.sending && self.subscribers.count > 0) [self sendData];
 }
 
 

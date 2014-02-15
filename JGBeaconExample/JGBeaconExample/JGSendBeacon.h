@@ -13,7 +13,7 @@
 @property (nonatomic) BOOL advertising;
 @property (nonatomic, readonly) BOOL sending;
 
--(void)enqueueDataToSend:(NSData*)data;
+-(void)queueDataToSend:(NSData*)data;
 
 +(JGSendBeacon*)beacon;
 

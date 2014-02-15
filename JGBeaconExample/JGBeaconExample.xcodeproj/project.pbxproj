@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D736E88E18AF6FED00E333BF /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D736E88D18AF6FED00E333BF /* test.jpg */; };
 		D737B3EC18AF66CD0096F089 /* JGBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = D737B3E618AF66CD0096F089 /* JGBeacon.m */; };
 		D737B3ED18AF66CD0096F089 /* JGReceiveBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = D737B3E918AF66CD0096F089 /* JGReceiveBeacon.m */; };
 		D737B3EE18AF66CD0096F089 /* JGSendBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = D737B3EB18AF66CD0096F089 /* JGSendBeacon.m */; };
@@ -38,7 +37,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D736E88D18AF6FED00E333BF /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpg; sourceTree = "<group>"; };
 		D737B3E518AF66CD0096F089 /* JGBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JGBeacon.h; path = JGBeaconExample/JGBeacon.h; sourceTree = "<group>"; };
 		D737B3E618AF66CD0096F089 /* JGBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JGBeacon.m; path = JGBeaconExample/JGBeacon.m; sourceTree = "<group>"; };
 		D737B3E718AF66CD0096F089 /* JGReceiveBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JGReceiveBeacon.h; path = JGBeaconExample/JGReceiveBeacon.h; sourceTree = "<group>"; };
@@ -144,7 +142,6 @@
 				D7F44E1618AF65C20056C990 /* Main_iPhone.storyboard */,
 				D7F44E1C18AF65C20056C990 /* JGViewController.h */,
 				D7F44E1D18AF65C20056C990 /* JGViewController.m */,
-				D736E88D18AF6FED00E333BF /* test.jpg */,
 				D7F44E1F18AF65C20056C990 /* Images.xcassets */,
 				D7F44E0B18AF65C20056C990 /* Supporting Files */,
 			);
@@ -259,7 +256,6 @@
 			files = (
 				D7F44E2018AF65C20056C990 /* Images.xcassets in Resources */,
 				D7F44E1818AF65C20056C990 /* Main_iPhone.storyboard in Resources */,
-				D736E88E18AF6FED00E333BF /* test.jpg in Resources */,
 				D7F44E0F18AF65C20056C990 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

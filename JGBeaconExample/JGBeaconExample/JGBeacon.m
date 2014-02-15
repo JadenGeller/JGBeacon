@@ -36,8 +36,8 @@
     return self;
 }
 
--(void)enqueueDataToSend:(NSData*)data{
-    [self.sendBeacon enqueueDataToSend:data];
+-(void)queueDataToSend:(NSData*)data{
+    [self.sendBeacon queueDataToSend:data];
 }
 
 -(void)setScanning:(BOOL)scanning{

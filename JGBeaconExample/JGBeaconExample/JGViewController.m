@@ -51,7 +51,7 @@
 
 
 - (IBAction)sendPress:(id)sender {
-    [self.beacon enqueueDataToSend:[self.textField.text dataUsingEncoding:NSUTF8StringEncoding]];
+    [self.beacon queueDataToSend:[self.textField.text dataUsingEncoding:NSUTF8StringEncoding]];
     self.textField.text = @"";
 }
 
