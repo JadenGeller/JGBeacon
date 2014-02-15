@@ -30,14 +30,18 @@
         
         JGBeacon __block *blockSelf = self;
         self.receiveBeacon.dataReceived = ^void (NSData *data){
+            NSLog(@"RECEIVED");
             [blockSelf.delegate receivedData:data];
         };
     }
     return self;
 }
 
--(void)queueDataToSend:(NSData*)data{
-    [self.sendBeacon queueDataToSend:data];
+-(void)enqueueDataToSend:(NSData*)data{
+    NSData *imageData = UIImageJPEGRepresentation([UIImage imageNamed:@"test.jpg"], 1.0);
+    
+    NSLog(@"SENT");
+    [self.sendBeacon enqueueDataToSend:imageData];
 }
 
 -(void)setScanning:(BOOL)scanning{
