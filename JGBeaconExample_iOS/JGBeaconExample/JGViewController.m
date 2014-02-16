@@ -67,4 +67,8 @@
     self.bottomSpacing.constant = 0;
 }
 
+-(BOOL)shouldConnectToBeacon:(NSUUID *)identifier strength:(NSNumber *)strength{
+    return YES;
+}
+
 @end
