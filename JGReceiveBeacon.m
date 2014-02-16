@@ -34,7 +34,8 @@
 -(id)init{
     if (self = [super init]) {
         // Start up the CBCentralManager
-        _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+        dispatch_queue_t centralQueue = dispatch_queue_create("com.ejvdev.central", DISPATCH_QUEUE_SERIAL);
+        _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:centralQueue];
         
         // And somewhere to store the incoming data
         _data = [[NSMutableData alloc] init];
@@ -184,9 +185,12 @@
     if ([stringFromData isEqualToString:@"EOM"]) {
         
         // We have, so show the data,
-        if (self.dataReceived) self.dataReceived(self.data);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (self.dataReceived) self.dataReceived(self.data);
+        });
         self.data.length = 0;
         
+        [peripheral setNotifyValue:NO forCharacteristic:characteristic];
         // Cancel our subscription to the characteristic
         //[peripheral setNotifyValue:NO forCharacteristic:characteristic];
         
