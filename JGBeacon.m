@@ -31,6 +31,12 @@
         JGBeacon __block *blockSelf = self;
         self.receiveBeacon.dataReceived = ^void (NSData *data){
             [blockSelf.delegate receivedData:data];
+
+        };
+        self.receiveBeacon.shouldConnectToBeacon = ^BOOL (NSUUID *identifier, NSNumber *strength){
+            
+            return [blockSelf.delegate shouldConnectToBeacon:identifier strength:strength];
+            
         };
     }
     return self;
@@ -63,6 +69,14 @@
 
 -(JGBeaconState)running{
     return (self.advertising | self.scanning);
+}
+
+-(void)disconnectBeacon:(NSUUID*)identifier{
+    [self.receiveBeacon disconnectBeacon:identifier];
+}
+
+-(void)disconnectAll{
+    [self.receiveBeacon disconnectAll];
 }
 
 @end
