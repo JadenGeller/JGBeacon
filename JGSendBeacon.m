@@ -7,12 +7,17 @@
 //
 
 #import "JGSendBeacon.h"
-#import <CoreBluetooth/CoreBluetooth.h>
 #import "TransferService.h"
+
+#if TARGET_OS_IPHONE
+#import <CoreBluetooth/CoreBluetooth.h>
+#elif TARGET_OS_MAC
+#import <IOBluetooth/IOBluetooth.h>
+#endif
 
 #define NOTIFY_MTU      20
 
-@interface JGSendBeacon () <CBPeripheralManagerDelegate, UITextViewDelegate>
+@interface JGSendBeacon () <CBPeripheralManagerDelegate>
 
 @property (strong, nonatomic) CBPeripheralManager       *peripheralManager;
 @property (strong, nonatomic) CBMutableCharacteristic   *transferCharacteristic;
@@ -196,7 +201,5 @@
     [self.dataToSend addObject:data];
     if (!self.sending && self.subscribers.count > 0) [self sendData];
 }
-
-
 
 @end

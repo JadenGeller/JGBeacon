@@ -30,6 +30,7 @@ enum {
 +(JGBeacon*)beacon;
 
 -(void)queueDataToSend:(NSData*)data;
+
 @property (nonatomic, readonly) NSMutableArray *dataQueue;
 
 @property (nonatomic) NSUUID *connectedBeacon;
