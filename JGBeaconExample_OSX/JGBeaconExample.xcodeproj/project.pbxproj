@@ -18,18 +18,11 @@
 		D736E8BC18AF7DAA00E333BF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D736E89B18AF7DAA00E333BF /* Cocoa.framework */; };
 		D736E8C418AF7DAA00E333BF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D736E8C218AF7DAA00E333BF /* InfoPlist.strings */; };
 		D736E8C618AF7DAA00E333BF /* JGBeaconExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D736E8C518AF7DAA00E333BF /* JGBeaconExampleTests.m */; };
+		D7794AC818AF7DD700A86720 /* JGReceiveBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = D7794AC118AF7DD700A86720 /* JGReceiveBeacon.m */; };
+		D7794AC918AF7DD700A86720 /* JGBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = D7794AC318AF7DD700A86720 /* JGBeacon.m */; };
+		D7794ACA18AF7DD700A86720 /* JGSendBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = D7794AC718AF7DD700A86720 /* JGSendBeacon.m */; };
 		D7794AD618AF7ECA00A86720 /* IOBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7794AD518AF7ECA00A86720 /* IOBluetooth.framework */; };
 		D7794AD918AF80A300A86720 /* Window.m in Sources */ = {isa = PBXBuildFile; fileRef = D7794AD818AF80A300A86720 /* Window.m */; };
-		D77F206818B0EEEC00FEB9AE /* NSMutableArray+fifoQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = D77F205718B0EEEC00FEB9AE /* NSMutableArray+fifoQueue.m */; };
-		D77F206918B0EEEC00FEB9AE /* YMS128.c in Sources */ = {isa = PBXBuildFile; fileRef = D77F205818B0EEEC00FEB9AE /* YMS128.c */; };
-		D77F206A18B0EEEC00FEB9AE /* YMSCBCentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D77F205B18B0EEEC00FEB9AE /* YMSCBCentralManager.m */; };
-		D77F206B18B0EEEC00FEB9AE /* YMSCBCharacteristic.m in Sources */ = {isa = PBXBuildFile; fileRef = D77F205D18B0EEEC00FEB9AE /* YMSCBCharacteristic.m */; };
-		D77F206C18B0EEEC00FEB9AE /* YMSCBDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = D77F205F18B0EEEC00FEB9AE /* YMSCBDescriptor.m */; };
-		D77F206D18B0EEEC00FEB9AE /* YMSCBPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = D77F206118B0EEEC00FEB9AE /* YMSCBPeripheral.m */; };
-		D77F206E18B0EEEC00FEB9AE /* YMSCBService.m in Sources */ = {isa = PBXBuildFile; fileRef = D77F206318B0EEEC00FEB9AE /* YMSCBService.m */; };
-		D77F206F18B0EEEC00FEB9AE /* YMSCBStoredPeripherals.m in Sources */ = {isa = PBXBuildFile; fileRef = D77F206518B0EEEC00FEB9AE /* YMSCBStoredPeripherals.m */; };
-		D77F207018B0EEEC00FEB9AE /* YMSCBUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D77F206718B0EEEC00FEB9AE /* YMSCBUtils.m */; };
-		D77F207318B0EF1200FEB9AE /* JGBluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = D77F207218B0EF1200FEB9AE /* JGBluetooth.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,29 +55,16 @@
 		D736E8C118AF7DAA00E333BF /* JGBeaconExampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JGBeaconExampleTests-Info.plist"; sourceTree = "<group>"; };
 		D736E8C318AF7DAA00E333BF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D736E8C518AF7DAA00E333BF /* JGBeaconExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JGBeaconExampleTests.m; sourceTree = "<group>"; };
+		D7794AC118AF7DD700A86720 /* JGReceiveBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JGReceiveBeacon.m; path = ../JGReceiveBeacon.m; sourceTree = "<group>"; };
+		D7794AC218AF7DD700A86720 /* JGBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JGBeacon.h; path = ../JGBeacon.h; sourceTree = "<group>"; };
+		D7794AC318AF7DD700A86720 /* JGBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JGBeacon.m; path = ../JGBeacon.m; sourceTree = "<group>"; };
+		D7794AC418AF7DD700A86720 /* JGReceiveBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JGReceiveBeacon.h; path = ../JGReceiveBeacon.h; sourceTree = "<group>"; };
+		D7794AC518AF7DD700A86720 /* TransferService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TransferService.h; path = ../TransferService.h; sourceTree = "<group>"; };
+		D7794AC618AF7DD700A86720 /* JGSendBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JGSendBeacon.h; path = ../JGSendBeacon.h; sourceTree = "<group>"; };
+		D7794AC718AF7DD700A86720 /* JGSendBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JGSendBeacon.m; path = ../JGSendBeacon.m; sourceTree = "<group>"; };
 		D7794AD518AF7ECA00A86720 /* IOBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOBluetooth.framework; path = System/Library/Frameworks/IOBluetooth.framework; sourceTree = SDKROOT; };
 		D7794AD718AF80A300A86720 /* Window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Window.h; path = JGBeaconExample/Window.h; sourceTree = "<group>"; };
 		D7794AD818AF80A300A86720 /* Window.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Window.m; path = JGBeaconExample/Window.m; sourceTree = "<group>"; };
-		D77F205618B0EEEC00FEB9AE /* NSMutableArray+fifoQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+fifoQueue.h"; sourceTree = "<group>"; };
-		D77F205718B0EEEC00FEB9AE /* NSMutableArray+fifoQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+fifoQueue.m"; sourceTree = "<group>"; };
-		D77F205818B0EEEC00FEB9AE /* YMS128.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = YMS128.c; sourceTree = "<group>"; };
-		D77F205918B0EEEC00FEB9AE /* YMS128.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMS128.h; sourceTree = "<group>"; };
-		D77F205A18B0EEEC00FEB9AE /* YMSCBCentralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMSCBCentralManager.h; sourceTree = "<group>"; };
-		D77F205B18B0EEEC00FEB9AE /* YMSCBCentralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMSCBCentralManager.m; sourceTree = "<group>"; };
-		D77F205C18B0EEEC00FEB9AE /* YMSCBCharacteristic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMSCBCharacteristic.h; sourceTree = "<group>"; };
-		D77F205D18B0EEEC00FEB9AE /* YMSCBCharacteristic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMSCBCharacteristic.m; sourceTree = "<group>"; };
-		D77F205E18B0EEEC00FEB9AE /* YMSCBDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMSCBDescriptor.h; sourceTree = "<group>"; };
-		D77F205F18B0EEEC00FEB9AE /* YMSCBDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMSCBDescriptor.m; sourceTree = "<group>"; };
-		D77F206018B0EEEC00FEB9AE /* YMSCBPeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMSCBPeripheral.h; sourceTree = "<group>"; };
-		D77F206118B0EEEC00FEB9AE /* YMSCBPeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMSCBPeripheral.m; sourceTree = "<group>"; };
-		D77F206218B0EEEC00FEB9AE /* YMSCBService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMSCBService.h; sourceTree = "<group>"; };
-		D77F206318B0EEEC00FEB9AE /* YMSCBService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMSCBService.m; sourceTree = "<group>"; };
-		D77F206418B0EEEC00FEB9AE /* YMSCBStoredPeripherals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMSCBStoredPeripherals.h; sourceTree = "<group>"; };
-		D77F206518B0EEEC00FEB9AE /* YMSCBStoredPeripherals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMSCBStoredPeripherals.m; sourceTree = "<group>"; };
-		D77F206618B0EEEC00FEB9AE /* YMSCBUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMSCBUtils.h; sourceTree = "<group>"; };
-		D77F206718B0EEEC00FEB9AE /* YMSCBUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMSCBUtils.m; sourceTree = "<group>"; };
-		D77F207118B0EF1200FEB9AE /* JGBluetooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGBluetooth.h; sourceTree = "<group>"; };
-		D77F207218B0EF1200FEB9AE /* JGBluetooth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGBluetooth.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,11 +92,15 @@
 		D736E88F18AF7DAA00E333BF = {
 			isa = PBXGroup;
 			children = (
+				D7794AC518AF7DD700A86720 /* TransferService.h */,
+				D7794AC218AF7DD700A86720 /* JGBeacon.h */,
+				D7794AC318AF7DD700A86720 /* JGBeacon.m */,
+				D7794AC418AF7DD700A86720 /* JGReceiveBeacon.h */,
+				D7794AC118AF7DD700A86720 /* JGReceiveBeacon.m */,
+				D7794AC618AF7DD700A86720 /* JGSendBeacon.h */,
+				D7794AC718AF7DD700A86720 /* JGSendBeacon.m */,
 				D7794AD718AF80A300A86720 /* Window.h */,
 				D7794AD818AF80A300A86720 /* Window.m */,
-				D77F207118B0EF1200FEB9AE /* JGBluetooth.h */,
-				D77F207218B0EF1200FEB9AE /* JGBluetooth.m */,
-				D77F205518B0EEEC00FEB9AE /* YmsCoreBluetooth */,
 				D736E8A118AF7DAA00E333BF /* JGBeaconExample */,
 				D736E8BF18AF7DAA00E333BF /* JGBeaconExampleTests */,
 				D736E89A18AF7DAA00E333BF /* Frameworks */,
@@ -194,31 +178,6 @@
 				D736E8C218AF7DAA00E333BF /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		D77F205518B0EEEC00FEB9AE /* YmsCoreBluetooth */ = {
-			isa = PBXGroup;
-			children = (
-				D77F205618B0EEEC00FEB9AE /* NSMutableArray+fifoQueue.h */,
-				D77F205718B0EEEC00FEB9AE /* NSMutableArray+fifoQueue.m */,
-				D77F205818B0EEEC00FEB9AE /* YMS128.c */,
-				D77F205918B0EEEC00FEB9AE /* YMS128.h */,
-				D77F205A18B0EEEC00FEB9AE /* YMSCBCentralManager.h */,
-				D77F205B18B0EEEC00FEB9AE /* YMSCBCentralManager.m */,
-				D77F205C18B0EEEC00FEB9AE /* YMSCBCharacteristic.h */,
-				D77F205D18B0EEEC00FEB9AE /* YMSCBCharacteristic.m */,
-				D77F205E18B0EEEC00FEB9AE /* YMSCBDescriptor.h */,
-				D77F205F18B0EEEC00FEB9AE /* YMSCBDescriptor.m */,
-				D77F206018B0EEEC00FEB9AE /* YMSCBPeripheral.h */,
-				D77F206118B0EEEC00FEB9AE /* YMSCBPeripheral.m */,
-				D77F206218B0EEEC00FEB9AE /* YMSCBService.h */,
-				D77F206318B0EEEC00FEB9AE /* YMSCBService.m */,
-				D77F206418B0EEEC00FEB9AE /* YMSCBStoredPeripherals.h */,
-				D77F206518B0EEEC00FEB9AE /* YMSCBStoredPeripherals.m */,
-				D77F206618B0EEEC00FEB9AE /* YMSCBUtils.h */,
-				D77F206718B0EEEC00FEB9AE /* YMSCBUtils.m */,
-			);
-			path = YmsCoreBluetooth;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -321,18 +280,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D736E8A818AF7DAA00E333BF /* main.m in Sources */,
-				D77F206C18B0EEEC00FEB9AE /* YMSCBDescriptor.m in Sources */,
+				D7794ACA18AF7DD700A86720 /* JGSendBeacon.m in Sources */,
+				D7794AC818AF7DD700A86720 /* JGReceiveBeacon.m in Sources */,
 				D7794AD918AF80A300A86720 /* Window.m in Sources */,
+				D7794AC918AF7DD700A86720 /* JGBeacon.m in Sources */,
 				D736E8AF18AF7DAA00E333BF /* JGAppDelegate.m in Sources */,
-				D77F206D18B0EEEC00FEB9AE /* YMSCBPeripheral.m in Sources */,
-				D77F206818B0EEEC00FEB9AE /* NSMutableArray+fifoQueue.m in Sources */,
-				D77F207018B0EEEC00FEB9AE /* YMSCBUtils.m in Sources */,
-				D77F206F18B0EEEC00FEB9AE /* YMSCBStoredPeripherals.m in Sources */,
-				D77F206A18B0EEEC00FEB9AE /* YMSCBCentralManager.m in Sources */,
-				D77F206918B0EEEC00FEB9AE /* YMS128.c in Sources */,
-				D77F206E18B0EEEC00FEB9AE /* YMSCBService.m in Sources */,
-				D77F206B18B0EEEC00FEB9AE /* YMSCBCharacteristic.m in Sources */,
-				D77F207318B0EF1200FEB9AE /* JGBluetooth.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

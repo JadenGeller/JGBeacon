@@ -54,6 +54,9 @@
 #define LE_Transfer_TransferService_h
 
 // Run uuidgen in the terminal to generate unique values
+
+//#define TRANSFER_SERVICE_UUID           @"AB1C"
+//#define TRANSFER_CHARACTERISTIC_UUID    @"DD34"
 #define TRANSFER_SERVICE_UUID           @"2D721536-6F31-4D64-82B0-DAA94F91B7A8"
 #define TRANSFER_CHARACTERISTIC_UUID    @"4DBB91E6-996E-4A91-ACB5-EC7EE465783D"
 

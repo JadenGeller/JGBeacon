@@ -39,7 +39,8 @@
 -(id)init{
     if (self = [super init]) {
         // Start up the CBPeripheralManager
-        _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
+        //dispatch_queue_t peripheralQueue = dispatch_queue_create("com.ejvdev.peripheral", DISPATCH_QUEUE_SERIAL);
+        _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:NULL];
         _subscribers = [NSMutableArray array];
         _dataToSend = [NSMutableArray array];
     }
@@ -97,7 +98,7 @@
 }
 
 
-/** Recognise when the central unsubscribes
+/** Recognize when the central unsubscribes
  */
 - (void)peripheralManager:(CBPeripheralManager *)peripheral central:(CBCentral *)central didUnsubscribeFromCharacteristic:(CBCharacteristic *)characteristic
 {
