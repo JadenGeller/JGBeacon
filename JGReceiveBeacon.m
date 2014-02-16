@@ -76,10 +76,10 @@
 //    if (RSSI.integerValue < -35) {
 //        return;
 //    }
-
+    
     
     // Ok, it's in range - have we already seen it?
-    if (![self.connectedPeripherals containsObject:peripheral]) {
+    if (![self.connectedPeripherals containsObject:peripheral] && self.shouldConnectToBeacon(peripheral.identifier, RSSI)) {
         
         NSLog(@"Discovered %@ at %@", peripheral.name, RSSI);
         
@@ -297,6 +297,18 @@
 
 -(void)peripheral:(CBPeripheral *)peripheral didModifyServices:(NSArray *)invalidatedServices{
     self.data.length = 0;
+}
+
+-(void)disconnectAll{
+    for (CBPeripheral *beacon in self.connectedPeripherals) {
+        [self.centralManager cancelPeripheralConnection:beacon];
+    }
+}
+
+-(void)disconnectBeacon:(NSUUID *)identifier{
+    for (CBPeripheral *beacon in self.connectedPeripherals) {
+        if ([beacon.identifier isEqual:identifier])[self.centralManager cancelPeripheralConnection:beacon];
+    }
 }
 
 @end

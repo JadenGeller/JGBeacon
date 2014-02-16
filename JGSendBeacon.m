@@ -161,7 +161,7 @@
     else if (amountToSend <= 0) return NO; // done sending, time for EOM
     
     NSData *chunk = [NSData dataWithBytes:self.theData.bytes+self.sendDataIndex length:amountToSend];
-    NSLog(@"Sent packet: %@", chunk);
+    //NSLog(@"Sent packet: %@", chunk);
 
     if ([self.peripheralManager updateValue:chunk forCharacteristic:self.transferCharacteristic onSubscribedCentrals:nil]) {
         self.sendDataIndex += amountToSend;
@@ -176,7 +176,10 @@
  */
 - (void)peripheralManagerIsReadyToUpdateSubscribers:(CBPeripheralManager *)peripheral
 {
-    if (!self.sending) [self sendData];
+    if (!self.sending){
+        [self sendData];
+    }
+
 }
 
 

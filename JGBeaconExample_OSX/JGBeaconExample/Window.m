@@ -43,5 +43,8 @@
     
 }
 
+-(BOOL)shouldConnectToBeacon:(NSUUID *)identifier strength:(NSNumber *)strength{
+    return YES;
+}
 
 @end

@@ -11,6 +11,7 @@
 @protocol JGBeaconDelegate <NSObject>
 
 -(void)receivedData:(NSData*)data;
+-(BOOL)shouldConnectToBeacon:(NSUUID*)identifier strength:(NSNumber*)strength;
 -(void)connectedToBeacon:(NSUUID*)identifier;
 -(void)disconnectedFromBeacon:(NSUUID*)identifier;
 
@@ -30,6 +31,8 @@ enum {
 +(JGBeacon*)beacon;
 
 -(void)queueDataToSend:(NSData*)data;
+-(void)disconnectBeacon:(NSUUID*)identifier;
+-(void)disconnectAll;
 
 @property (nonatomic, readonly) NSMutableArray *dataQueue;
 
