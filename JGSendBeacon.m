@@ -39,8 +39,8 @@
 -(id)init{
     if (self = [super init]) {
         // Start up the CBPeripheralManager
-        dispatch_queue_t peripheralQueue = dispatch_queue_create("com.ejvdev.peripheral", DISPATCH_QUEUE_SERIAL);
-        _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:peripheralQueue];
+        //dispatch_queue_t peripheralQueue = dispatch_queue_create("com.ejvdev.peripheral", DISPATCH_QUEUE_SERIAL);
+        _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:NULL];
         _subscribers = [NSMutableArray array];
         _dataToSend = [NSMutableArray array];
     }

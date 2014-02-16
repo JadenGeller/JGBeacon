@@ -26,7 +26,7 @@
     
     self.beacon = [JGBeacon beacon];
     self.beacon.delegate = self;
-    self.beacon.running = JGBeaconSendingAndReceiving;
+    self.beacon.running = JGBeaconReceivingOnly;
 
 }
 
