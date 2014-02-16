@@ -23,29 +23,17 @@
     return [[JGBeacon alloc]init];
 }
 
--(JGSendBeacon*)sendBeacon{
-    if (!_sendBeacon) {
-        _sendBeacon = [JGSendBeacon beacon];
-    }
-    return _sendBeacon;
-}
-
--(JGReceiveBeacon*)receiveBeacon{
-    if (!_receiveBeacon) {
-        _receiveBeacon = [JGReceiveBeacon beacon];
+-(id)init{
+    if (self = [super init]) {
+        self.sendBeacon = [JGSendBeacon beacon];
+        self.receiveBeacon = [JGReceiveBeacon beacon];
         
         JGBeacon __block *blockSelf = self;
-        _receiveBeacon.dataReceived = ^void (NSData *data){
+        self.receiveBeacon.dataReceived = ^void (NSData *data){
             [blockSelf.delegate receivedData:data];
-            
-        };
-        _receiveBeacon.shouldConnectToBeacon = ^BOOL (NSUUID *identifier, NSNumber *strength){
-            
-            return [blockSelf.delegate shouldConnectToBeacon:identifier strength:strength];
-            
         };
     }
-    return _receiveBeacon;
+    return self;
 }
 
 -(void)queueDataToSend:(NSData*)data{
@@ -69,27 +57,12 @@
 }
 
 -(void)setRunning:(JGBeaconState)running{
-    
-    if (running & JGBeaconSendingOnly) {
-        self.sendBeacon.advertising = YES;
-    }
-    else if(_sendBeacon) self.sendBeacon.advertising = NO;
-    if (running & JGBeaconReceivingOnly) {
-        self.receiveBeacon.scanning = YES;
-    }
-    else if(_receiveBeacon) self.receiveBeacon.scanning = NO;
+    self.sendBeacon.advertising = running & JGBeaconSendingOnly;
+    self.receiveBeacon.scanning = running & JGBeaconReceivingOnly;
 }
 
 -(JGBeaconState)running{
     return (self.advertising | self.scanning);
-}
-
--(void)disconnectBeacon:(NSUUID*)identifier{
-    [self.receiveBeacon disconnectBeacon:identifier];
-}
-
--(void)disconnectAll{
-    [self.receiveBeacon disconnectAll];
 }
 
 @end

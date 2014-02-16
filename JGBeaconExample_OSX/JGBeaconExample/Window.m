@@ -25,7 +25,7 @@
 -(void)setup{
     self.beacon = [JGBeacon beacon];
     self.beacon.delegate = self;
-    self.beacon.running = JGBeaconSendingOnly;
+    self.beacon.running = JGBeaconSendingAndReceiving;
 
 }
 
@@ -43,8 +43,5 @@
     
 }
 
--(BOOL)shouldConnectToBeacon:(NSUUID *)identifier strength:(NSNumber *)strength{
-    return YES;
-}
 
 @end

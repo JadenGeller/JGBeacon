@@ -39,8 +39,7 @@
 -(id)init{
     if (self = [super init]) {
         // Start up the CBPeripheralManager
-        //dispatch_queue_t peripheralQueue = dispatch_queue_create("com.ejvdev.peripheral", DISPATCH_QUEUE_SERIAL);
-        _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:NULL];
+        _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
         _subscribers = [NSMutableArray array];
         _dataToSend = [NSMutableArray array];
     }
@@ -98,7 +97,7 @@
 }
 
 
-/** Recognize when the central unsubscribes
+/** Recognise when the central unsubscribes
  */
 - (void)peripheralManager:(CBPeripheralManager *)peripheral central:(CBCentral *)central didUnsubscribeFromCharacteristic:(CBCharacteristic *)characteristic
 {
@@ -162,7 +161,7 @@
     else if (amountToSend <= 0) return NO; // done sending, time for EOM
     
     NSData *chunk = [NSData dataWithBytes:self.theData.bytes+self.sendDataIndex length:amountToSend];
-    //NSLog(@"Sent packet: %@", chunk);
+    NSLog(@"Sent packet: %@", chunk);
 
     if ([self.peripheralManager updateValue:chunk forCharacteristic:self.transferCharacteristic onSubscribedCentrals:nil]) {
         self.sendDataIndex += amountToSend;
@@ -177,10 +176,7 @@
  */
 - (void)peripheralManagerIsReadyToUpdateSubscribers:(CBPeripheralManager *)peripheral
 {
-    if (!self.sending){
-        [self sendData];
-    }
-
+    if (!self.sending) [self sendData];
 }
 
 

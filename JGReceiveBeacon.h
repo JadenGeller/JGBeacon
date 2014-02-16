@@ -11,12 +11,9 @@
 @interface JGReceiveBeacon : NSObject
 
 @property (nonatomic, copy) void (^dataReceived)(NSData *data);
-@property (nonatomic, copy) BOOL (^shouldConnectToBeacon)(NSUUID *identifier, NSNumber *strength);
 
 @property (nonatomic) BOOL scanning;
 
 +(JGReceiveBeacon*)beacon;
--(void)disconnectBeacon:(NSUUID*)identifier;
--(void)disconnectAll;
 
 @end
