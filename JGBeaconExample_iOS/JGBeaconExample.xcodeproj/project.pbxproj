@@ -10,6 +10,7 @@
 		D7794AD218AF7E5000A86720 /* JGReceiveBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = D7794ACD18AF7E5000A86720 /* JGReceiveBeacon.m */; };
 		D7794AD318AF7E5000A86720 /* JGBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = D7794ACF18AF7E5000A86720 /* JGBeacon.m */; };
 		D7794AD418AF7E5000A86720 /* JGSendBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = D7794AD118AF7E5000A86720 /* JGSendBeacon.m */; };
+		D789E3E318B0C94F009D5A6B /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D789E3E218B0C94F009D5A6B /* CoreBluetooth.framework */; };
 		D7F44E0518AF65C20056C990 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7F44E0418AF65C20056C990 /* Foundation.framework */; };
 		D7F44E0718AF65C20056C990 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7F44E0618AF65C20056C990 /* CoreGraphics.framework */; };
 		D7F44E0918AF65C20056C990 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7F44E0818AF65C20056C990 /* UIKit.framework */; };
@@ -44,6 +45,7 @@
 		D7794ACF18AF7E5000A86720 /* JGBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JGBeacon.m; path = ../JGBeacon.m; sourceTree = "<group>"; };
 		D7794AD018AF7E5000A86720 /* JGSendBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JGSendBeacon.h; path = ../JGSendBeacon.h; sourceTree = "<group>"; };
 		D7794AD118AF7E5000A86720 /* JGSendBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JGSendBeacon.m; path = ../JGSendBeacon.m; sourceTree = "<group>"; };
+		D789E3E218B0C94F009D5A6B /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		D7F44E0118AF65C20056C990 /* JGBeaconExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JGBeaconExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7F44E0418AF65C20056C990 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D7F44E0618AF65C20056C990 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -70,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D789E3E318B0C94F009D5A6B /* CoreBluetooth.framework in Frameworks */,
 				D7F44E0718AF65C20056C990 /* CoreGraphics.framework in Frameworks */,
 				D7F44E0918AF65C20056C990 /* UIKit.framework in Frameworks */,
 				D7F44E0518AF65C20056C990 /* Foundation.framework in Frameworks */,
@@ -92,13 +95,13 @@
 		D737B3EF18AF681B0096F089 /* JGBeacon */ = {
 			isa = PBXGroup;
 			children = (
-				D7794ACB18AF7E5000A86720 /* JGReceiveBeacon.h */,
 				D7794ACC18AF7E5000A86720 /* TransferService.h */,
-				D7794ACD18AF7E5000A86720 /* JGReceiveBeacon.m */,
 				D7794ACE18AF7E5000A86720 /* JGBeacon.h */,
 				D7794ACF18AF7E5000A86720 /* JGBeacon.m */,
 				D7794AD018AF7E5000A86720 /* JGSendBeacon.h */,
 				D7794AD118AF7E5000A86720 /* JGSendBeacon.m */,
+				D7794ACB18AF7E5000A86720 /* JGReceiveBeacon.h */,
+				D7794ACD18AF7E5000A86720 /* JGReceiveBeacon.m */,
 			);
 			name = JGBeacon;
 			sourceTree = "<group>";
@@ -126,6 +129,7 @@
 		D7F44E0318AF65C20056C990 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D789E3E218B0C94F009D5A6B /* CoreBluetooth.framework */,
 				D7F44E0418AF65C20056C990 /* Foundation.framework */,
 				D7F44E0618AF65C20056C990 /* CoreGraphics.framework */,
 				D7F44E0818AF65C20056C990 /* UIKit.framework */,

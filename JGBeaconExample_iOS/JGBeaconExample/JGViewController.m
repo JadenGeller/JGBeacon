@@ -26,7 +26,7 @@
     
     self.beacon = [JGBeacon beacon];
     self.beacon.delegate = self;
-    self.beacon.running = JGBeaconSendingAndReceiving;
+    self.beacon.running = JGBeaconReceivingOnly;
 
 }
 
@@ -65,6 +65,10 @@
 
 -(void)keyboardWillHide:(NSNotification*)notification{
     self.bottomSpacing.constant = 0;
+}
+
+-(BOOL)shouldConnectToBeacon:(NSUUID *)identifier strength:(NSNumber *)strength{
+    return YES;
 }
 
 @end
