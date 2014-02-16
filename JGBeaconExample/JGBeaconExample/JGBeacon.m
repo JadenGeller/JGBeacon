@@ -30,7 +30,7 @@
         
         JGBeacon __block *blockSelf = self;
         self.receiveBeacon.dataReceived = ^void (NSData *data){
-            if ([blockSelf respondsToSelector:@selector(receivedData:)]) [blockSelf.delegate receivedData:data];
+            [blockSelf.delegate receivedData:data];
         };
     }
     return self;
