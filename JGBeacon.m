@@ -31,9 +31,12 @@
         JGBeacon __block *blockSelf = self;
         self.receiveBeacon.dataReceived = ^void (NSData *data){
             [blockSelf.delegate receivedData:data];
+
         };
         self.receiveBeacon.shouldConnectToBeacon = ^BOOL (NSUUID *identifier, NSNumber *strength){
+            
             return [blockSelf.delegate shouldConnectToBeacon:identifier strength:strength];
+            
         };
     }
     return self;
