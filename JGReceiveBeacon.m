@@ -34,8 +34,7 @@
 -(id)init{
     if (self = [super init]) {
         // Start up the CBCentralManager
-        //dispatch_queue_t centralQueue = dispatch_queue_create("com.ejvdev.central", DISPATCH_QUEUE_SERIAL);
-        _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:NULL];
+        _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
         
         // And somewhere to store the incoming data
         _data = [[NSMutableData alloc] init];
@@ -77,10 +76,10 @@
 //    if (RSSI.integerValue < -35) {
 //        return;
 //    }
-    
+
     
     // Ok, it's in range - have we already seen it?
-    if (![self.connectedPeripherals containsObject:peripheral] && self.shouldConnectToBeacon(peripheral.identifier, RSSI)) {
+    if (![self.connectedPeripherals containsObject:peripheral]) {
         
         NSLog(@"Discovered %@ at %@", peripheral.name, RSSI);
         
@@ -185,12 +184,9 @@
     if ([stringFromData isEqualToString:@"EOM"]) {
         
         // We have, so show the data,
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (self.dataReceived) self.dataReceived(self.data);
-        });
+        if (self.dataReceived) self.dataReceived(self.data);
         self.data.length = 0;
         
-        [peripheral setNotifyValue:NO forCharacteristic:characteristic];
         // Cancel our subscription to the characteristic
         //[peripheral setNotifyValue:NO forCharacteristic:characteristic];
         
@@ -301,18 +297,6 @@
 
 -(void)peripheral:(CBPeripheral *)peripheral didModifyServices:(NSArray *)invalidatedServices{
     self.data.length = 0;
-}
-
--(void)disconnectAll{
-    for (CBPeripheral *beacon in self.connectedPeripherals) {
-        [self.centralManager cancelPeripheralConnection:beacon];
-    }
-}
-
--(void)disconnectBeacon:(NSUUID *)identifier{
-    for (CBPeripheral *beacon in self.connectedPeripherals) {
-        if ([beacon.identifier isEqual:identifier])[self.centralManager cancelPeripheralConnection:beacon];
-    }
 }
 
 @end
