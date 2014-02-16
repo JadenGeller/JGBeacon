@@ -92,8 +92,8 @@
 		D737B3EF18AF681B0096F089 /* JGBeacon */ = {
 			isa = PBXGroup;
 			children = (
-				D7794ACB18AF7E5000A86720 /* JGReceiveBeacon.h */,
 				D7794ACC18AF7E5000A86720 /* TransferService.h */,
+				D7794ACB18AF7E5000A86720 /* JGReceiveBeacon.h */,
 				D7794ACD18AF7E5000A86720 /* JGReceiveBeacon.m */,
 				D7794ACE18AF7E5000A86720 /* JGBeacon.h */,
 				D7794ACF18AF7E5000A86720 /* JGBeacon.m */,

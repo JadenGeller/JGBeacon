@@ -34,7 +34,8 @@
 -(id)init{
     if (self = [super init]) {
         // Start up the CBCentralManager
-        _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+        dispatch_queue_t centralQueue = dispatch_queue_create("com.ejvdev.central", DISPATCH_QUEUE_SERIAL);
+        _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:centralQueue];
         
         // And somewhere to store the incoming data
         _data = [[NSMutableData alloc] init];
